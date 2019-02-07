@@ -1,0 +1,37 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = nl_NL
+% !TeX TS-program = xelatex
+
+\documentclass{article}
+
+\usepackage{parskip}
+%% Find out what engine we're running...
+\usepackage{ifluatex,ifxetex}
+
+%% Different setup for xe
+\ifxetex
+%% https://tex.stackexchange.com/questions/439998/math-in-ms-calibri/440080
+\usepackage[math-style=TeX]{unicode-math}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Calibri}
+\defaultfontfeatures{Scale=MatchUppercase}
+\setsansfont{Calibri}
+\setmonofont{Consolas}
+\setmathfont[slash-delimiter=frac]{Cambria Math}
+\setmathfont[range=up]{Calibri}
+\setmathfont[range=it]{Calibri Italic}
+\setmathfont[range=bfup]{Calibri Bold}
+\setmathfont[range=bfit]{Calibri Bold Italic}
+\setoperatorfont\normalfont % For log, sin, cos, etc.
+\else
+\usepackage[utf8]{inputenc}
+\usepackage{nimbusmono}
+\usepackage[scaled]{helvet}
+\usepackage[bitstream-charter]{mathdesign}
+\fi
+
+\begin{document}
+
+Text
+
+\end{document}
