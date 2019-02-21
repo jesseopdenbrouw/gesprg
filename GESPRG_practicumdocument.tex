@@ -2,11 +2,17 @@
 % !TeX spellcheck = nl_NL
 % !TeX TS-program = xelatex
 
-
+%%
+%%   GESPRG_practicumdocument - Exercizes for programming in C
+%%
+%%   (c) 2019  --  The Hague University of Applied Sciences (THUAS)
+%%
+%%   Please mail your comments to: J.E.J.opdenBrouw@hhs.nl
+%%
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\beta$}
+\def\version{1.999$\gamma$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -31,8 +37,8 @@
 \usepackage{mathtools}
 \setlength{\mathindent}{1em}
 \DeclareMathOperator{\ggd}{ggd}
-%\DeclareMathSymbol{,}{\mathord}{letters}{"3B}
-\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}
+\DeclareMathSymbol{,}{\mathord}{letters}{"3B}
+%\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}
 \newcommand\strutrule{\rule{0mm}{1.9ex}} %shortcut macro
 \usepackage{tabularx}
 \usepackage{dingbat}
@@ -141,6 +147,8 @@
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
+%  columns=fixed,
+%   basewidth={0.6em,0.6em},
   frame=lines,
   rulecolor=\color{black},
   tabsize=4,
@@ -681,7 +689,7 @@ Het  zogenoemde \textsl{format argument} \lstinline|"%d"| geeft \lstinline|scanf
 Schrijf nu zelf een programma dat twee integers inleest (vanaf het toetsenbord) en de som van deze integers afdrukt.
 
 Noot: er kleven nadelen van het inlezen van getallen met \lstinline|scanf|. Zie bijlage~\ref{sec:scanf}.
-\section{Toekenning- en herhalingsopdrachten (\texttt{for} loop)}
+\section{Toekennings- en herhalingsopdrachten (\texttt{for} loop)}
 
 \subsection{Inleiding}
 
@@ -1240,7 +1248,7 @@ Test het programma met:
 
 \begin{lstlisting}[language=,literate=]
 Geef getal tussen 0 en 100: 21
-Het getal is: eenentwinting
+Het getal is: eenentwintig
 \end{lstlisting}
 
 Geef zelf ook een aantal testwaardes. Zorg dat je deze testdata bij de hand hebt tijdens het nakijken.
@@ -2476,7 +2484,7 @@ Na het uitvoeren moet de variabele \lstinline|res| de waarde 0 hebben.
 Bepaal zelf ook een aantal testwaardes.
 
 \subsection{Doorsnede}
-Schrijf een functie \lstinline|int doorsnede(int a[], int aantal_a, int b[], int aantal_b)| die de \textsl{doorsnede}\footnote{Zie \url{https://nl.wikipedia.org/wiki/Doorsnede_(verzamelingenleer)}} van de array’s \lstinline|a| en \lstinline|b| in de array \lstinline|a| plaatst. De parameter \lstinline|aantal_a| bevat het aantal elementen in de array \lstinline|a| en de parameter \lstinline|aantal_b| bevat het aantal elementen in de array \lstinline|b|. Je mag ervan uit gaan dat een integer hooguit eenmaal in elke array kan voorkomen. De functie moet het aantal getallen in de doorsnede teruggeven als return waarde. 
+Schrijf een functie \mbox{\lstinline[columns=fixed]|int doorsnede(int a[],  int aantal_a, int b[], int aantal_b)|} die de \textsl{doorsnede}\footnote{Zie \url{https://nl.wikipedia.org/wiki/Doorsnede_(verzamelingenleer)}} van de array’s \lstinline|a| en \lstinline|b| in de array \lstinline|a| plaatst. De parameter \lstinline|aantal_a| bevat het aantal elementen in de array \lstinline|a| en de parameter \lstinline|aantal_b| bevat het aantal elementen in de array \lstinline|b|. Je mag ervan uit gaan dat een integer hooguit eenmaal in elke array kan voorkomen. De functie moet het aantal getallen in de doorsnede teruggeven als return waarde. 
 
 %Schrijf ook een hoofdprogramma om de functie doorsnede grondig te testen.
 
@@ -2487,6 +2495,7 @@ int rij1[] = { 23, 3, 56, 6, 5 };
 int rij2[] = { 12, 6, 3, 18, 7, 10, 56, 11 }; 
 int aantal_doorsnede = doorsnede(rij1, sizeof rij1 / sizeof rij1[0], rij2, sizeof rij2 / sizeof rij2[0]);
 int i;
+
 for (i = 0; i < aantal_doorsnede; i = i + 1) {
 	printf("%d ", rij1[i]);
 } 
@@ -2510,6 +2519,7 @@ De code:
 int rij[] = { 23, 3, 56, 3, 23, 5, 12, 6, 3, 18, 7, 10, 56, 11 }; 
 int aantal_uniek = uniek(rij, sizeof rij / sizeof rij[0]);
 int i;
+
 for (i = 0; i < aantal_uniek; i = i + 1) {
 	printf("%d ", rij[i]);
 } 
@@ -2527,13 +2537,13 @@ Run Length Encoding is een van de oudste compressiemethoden. Een reeks identieke
 Zo wordt de invoer van de string:
 
 \begin{lstlisting}[language=,literate=]
-    aaaabbbbbbccccccccdaaaa
+aaaabbbbbbccccccccdaaaa
 \end{lstlisting}
 
 gecodeerd als:
 
 \begin{lstlisting}[language=,literate=]
-    4a6b8c1d4a
+4a6b8c1d4a
 \end{lstlisting}
 
 Merk op dat de uitvoer groter wordt als de karakters steeds afwisselen. Zo wordt de string \lstinline|abcd| gecodeerd als \lstinline[literate=]|1a1b1c1d|.
@@ -2572,6 +2582,15 @@ Hallo, dit is een string.
 Het verwijderen moet in de ingevoerde string gebeuren, er mag geen nieuwe string aangemaakt worden.
 Ga ervan uit dat de ingevoerde string niet langer is dan 100 karakters.
 
+\subsection{Vervangen}
+Voor het vervangen van een woord in een string is in C geen functie beschikbaar. Die zal je dus zelf moeten schrijven. Schrijf een functie:
+
+\begin{lstlisting}
+int stringreplace(char *str, char *what, char *with)
+\end{lstlisting}
+
+die in de string \lstinline|str| zoekt naar het woord \lstinline|what| en vervangt door het woord \lstinline|with|. Schrijf een hoofdprogramma om de functie te testen. Noot: let erop dat de lengte van \lstinline|with| groter kan zijn dan de lengte van \lstinline|what|. Zorg ervoor dat de ruimte van de string \lstinline|str| groot genoeg is.
+
 \subsection{Onbeperkt}
 Het inlezen van een regel tekst van het toetsenbord is niet echt lastig. Het wordt pas problematisch als er meer tekens worden ingelezen dan er in de string kunnen worden ondergebracht. Meestal declareren we een string met 100 karakters en hopen maar dat er niet meer karakters worden ingevoerd.
 
@@ -2608,7 +2627,7 @@ We hebben nu een stuk geheugen van 1024 bytes. Dat kan op een gegeven moment vol
 	ptrnew = realloc(ptr, 2048);
 \end{lstlisting}
 
-Let erop dat \lstinline|ptrnew| en \lstinline|ptr| naar twee verschillende adressen \textsl{kunnen} wijzen. Als het eerste geheugengebied niet kan worden uitgebreid dan wordt er een nieuw geheugengebied gealloceerd. De functie \lstinline|realloc()| kopieert dan de 1024 bytes van de eerste \lstinline|alloc()| naar het nieuwe geheugengebied en geeft de pointer \lstinline|ptr| vrij d.m.v.\@ \lstinline|free(ptr)|. Je kan meer vinden over \lstinline|alloc| en \lstinline|alloc| op 
+Let erop dat \lstinline|ptrnew| en \lstinline|ptr| naar twee verschillende adressen \textsl{kunnen} wijzen. Als het eerste geheugengebied niet kan worden uitgebreid dan wordt er een nieuw geheugengebied gealloceerd. De functie \lstinline|realloc()| kopieert dan de 1024 bytes van de eerste \lstinline|alloc()| naar het nieuwe geheugengebied en geeft de pointer \lstinline|ptr| vrij d.m.v.\@ \lstinline|free(ptr)|. Je kan meer vinden over \lstinline|malloc| en \lstinline|realloc| op 
 \url{http://www.cplusplus.com/reference/cstdlib/malloc/}.
 
 Schrijf een functie \lstinline|char *getoneline(int chuncksize)| dat een regel tekst van het toetsenbord inleest en in een stuk dynamisch gealloceerd geheugen plaatst. De parameter \lstinline|chunksize| is het aantal bytes waarmee het geheugen moet worden uitgebreid als een eerder gealloceerd stuk geheugen vol is. Nadat de regel is ingelezen (end-of-line-karakter wordt niet opgeslagen) geeft de functie de pointer terug naar het gealloceerde geheugen. Test je functie met een klein programma en varieer de waarde van \lstinline|chunksize|.
@@ -2968,7 +2987,7 @@ int main(void) {
 Er is nog een andere manier om de invoerbuffer te legen. We kunnen de invoerbuffer legen met de functie \lstinline|fflush| (file flush):
 
 \begin{lstlisting}
-    fflush(stdin);
+fflush(stdin);
 \end{lstlisting}
 
 Als parameter van \lstinline|fflush| wordt \lstinline|stdin| opgegeven. Dat staat voor \textsl{standard input} en daar wordt in de regel het toetsenbord mee bedoeld\footnote{Op de bekende operating systems is het mogelijk om de inhoud van bestanden door te geven aan de \textsl{standard input}. Het programma krijgt dan data uit een bestand i.p.v\@ het toetsenbord. Dat wordt \textsl{redirection} genoemd.}. Daarnaast kennen we nog \lstinline|stdout| (\textsl{standard output}, het beeldscherm) en \lstinline|stderr| (\textsl{standard error}, meestal ook het beeldscherm).
@@ -3110,14 +3129,14 @@ In de onderstaande figuur is de werking van het programma uitgebeeld.
 Met behulp van een array is het makkelijk om de som te bepalen van een groot aantal getallen:
 
 \begin{lstlisting}
-	...
-	int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
-	int som = 0:
-	...
-	for (i=0; i<12; i=i+1) {
-		som = som + a[i];
-	}
-	...
+...
+int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
+int som = 0:
+...
+for (i=0; i<12; i=i+1) {
+	som = som + a[i];
+}
+...
 \end{lstlisting}
 
 De lengte (of grootte) van een array is te bepalen met behulp van de keyword \lstinline|sizeof|. Let daarbij op dat \lstinline|sizeof| de grootte in \textsl{bytes} berekend. Om het aantal elementen van de array te bepalen, moet de grootte in bytes nog worden gedeeld door de grootte van één element:
@@ -3149,16 +3168,19 @@ Een uitbeelding van de string is hieronder te zien:
 \end{tikzpicture}
 \end{figure}
 
-Let erop dat de array dus één element groter is dan het aantal karakters in de array. Dit is een veel gemaakte fout bij het afhandelen van strings (een zogenoemde \textsl{off-by-one error}). Omdat het null-byte het einde van de string aangeeft, kunnen we er gebruik van maken, bijvoorbeeld voor het bepalen van de lengte van de string:
+Let erop dat de array dus één element groter is dan het aantal karakters in de array. Dit is een veel gemaakte fout bij het afhandelen van strings (een zogenoemde \textsl{off-by-one error}). Omdat het null-byte het einde van de string aangeeft, kunnen we er gebruik van maken, bijvoorbeeld voor het bepalen van de lengte van de string. Hieronder zie je een mogelijke implementatie van de functie \lstinline|strlen|:
 
 \begin{lstlisting}
+int stringlength(char str[]) {   /* use another function name to prevent */
+                                 /* clash with strlen */
 	int count = 0;
 
     while (str[count] != '\0') {
         count++;
     }
 
-	/* count holds length of string */
+	return count;
+}
 \end{lstlisting}
 
 %%\begin{lstlisting}
