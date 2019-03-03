@@ -12,7 +12,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\gamma$}
+\def\version{1.999$\delta$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -2632,6 +2632,15 @@ Let erop dat \lstinline|ptrnew| en \lstinline|ptr| naar twee verschillende adres
 
 Schrijf een functie \lstinline|char *getoneline(int chuncksize)| dat een regel tekst van het toetsenbord inleest en in een stuk dynamisch gealloceerd geheugen plaatst. De parameter \lstinline|chunksize| is het aantal bytes waarmee het geheugen moet worden uitgebreid als een eerder gealloceerd stuk geheugen vol is. Nadat de regel is ingelezen (end-of-line-karakter wordt niet opgeslagen) geeft de functie de pointer terug naar het gealloceerde geheugen. Test je functie met een klein programma en varieer de waarde van \lstinline|chunksize|.
 
+\subsection{Waar of niet waar}
+Gegeven is de volgende bewering:
+\begin{quote}
+Deze zin bevat~1 keer een~0,~1 keer een~1,~1 keer een~2,~1 keer een~3,~1 keer een~4,~1 keer een~5,~1 keer een~6,~1 keer een~7,~1 keer een~8 en~1 keer een~9.
+\end{quote}
+
+We bekijken \textbf{alleen} de cijfers en getallen. Natuurlijk is de bewering niet waar, er zijn immers 11 enen. Toch is er een zin mogelijk waarbij het aantal cijfers en de getallen kloppen. Schrijf een programma dat vanuit een beginsituatie (stel alle aantallen 1) iteratief naar een mogelijke oplossing zoekt.
+
+Hint: maak gebruik van twee array's. Array \lstinline|int a[10]| bevat het aantal cijfers in getalvorm, dus element \lstinline|a[0]| bevat het aantal nullen in getalvorm. In array \lstinline|int b[10]| houd je bij hoe vaak een cijfer voorkomt in de getallen van array \lstinline|a|. Dus \lstinline|b[1]| zou ``10'' kunnen bevatten omdat er in de getallen van array \lstinline|a| 10 keer een~1 voorkomt. Ga ervan uit dat een cijfer niet meer dan 99 keer voorkomt. Bedenk ook dat het aantal voorkomingen van een cijfer minstens 1 is (kijk hierbij naar de zin).
 
 \section{Eindopdracht}
 
