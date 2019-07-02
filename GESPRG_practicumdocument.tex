@@ -158,7 +158,7 @@
   title=\lstname,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
   upquote=true,
-  aboveskip=-1ex,
+  aboveskip=2ex,
   belowskip=-2ex,
   escapeinside={(*}{*)},
   literate=%
@@ -2751,7 +2751,7 @@ De aangepaste tekst moet naar een bestand geschreven worden. Eventuele foutmeldi
 Met argumenten op de command-line wordt het volgende bedoeld:
 
 \begin{itemize}
-\item Open een command-box (Windows: Windowstoets-R en type cmd.exe, OS-X: start terminal; Linux: start terminal).
+	\item Open een command-box (Windows: Windowstoets-R en type \lstlisting[language=,literate=]|cmd.exe|, OS-X: start terminal; Linux: start terminal).
 \item Navigeer naar de map waar de \textsl{executable} (= uitvoerbaar programma) staat. Bij Code:Blocks iets van \lstinline|C:\Users\...\Debug\bin|. Bij Linux/Mac: effe uitzoeken.
 \item Start de executable met \lstinline[language=,literate=]|naamvanexecutable.exe filename1.txt filename2.txt <enter>| (of zoveel argumenten als noodzakelijk).
 \item Het programma start nu met de twee argumenten.
@@ -2772,7 +2772,7 @@ In deze bijlage zijn instructies te vinden voor het installeren en gebruiken van
 \begin{itemize}
 \item Download Code::Blocks van \url{http://sourceforge.net/projects/codeblocks/files/Binaries/17.12/Windows/codeblocks-17.12mingw-setup.exe} (let erop dat in de naam de term \texttt{mingw} staat)
 \item Installeer vervolgens Code::Blocks door de gedownloade executable te runnen. (Bij installatie continu op \texttt{next} drukken)
-\item Bij het opstarten van Code::Blocks wordt er gevraagd naar de compiler die gebruikt zal gaan worden. Als het goed is, is er al één geselecteerd en hoef je alleen op \texttt{OK} te drukken.
+\item Bij het opstarten van Code::Blocks wordt er gevraagd naar de compiler die gebruikt zal gaan worden. Als het goed is, is er al \'e\'en geselecteerd en hoef je alleen op \texttt{OK} te drukken.
 \item Nu kun je een project aanmaken en code gaan compileren en runnen:
 \begin{enumerate}[label=\alph*.]
 \item \lstinline[language=,literate=]|File->New->Project|
@@ -2780,7 +2780,7 @@ In deze bijlage zijn instructies te vinden voor het installeren en gebruiken van
 \item \lstinline[language=,literate=]|Next|
 \item Selecteer \lstinline[language=,literate=]|C| (!!!NIET!!! \lstinline[language=,literate=]|C++|)
 \item \lstinline[language=,literate=]|Project Title = helloworld|
-\item \lstinline[language=,literate=]|Folder to create project in|: Selecteer een map die je later nog terug kan vinden…
+\item \lstinline[language=,literate=]|Folder to create project in|: Selecteer een map die je later nog terug kan vinden\ldots
 \item \lstinline[language=,literate=]|Next|
 \item \lstinline[language=,literate=]|Finish| (vinkjes aan, GNU GCC compiler geselecteerd)
 \item Links in de projectomgeving is nu de file \lstinline[language=,literate=]|main.c| te vinden met code:
@@ -2814,7 +2814,7 @@ De format string \lstinline|"%d"| vertelt \lstinline|scanf| dat een geheel getal
 scanf("%d %d %d", &getala, &getalb, &getalc);
 \end{lstlisting}
 
-Bij het invoeren moeten de getallen gescheiden worden door één of meerdere spaties. Het aantal spaties maakt dus niet uit; deze worden overgeslagen. Als je in C programma een getal inleest met \lstinline|scanf| dan gebeuren er vreemde dingen als je in plaats van een getal letters intypt. Bijvoorbeeld:
+Bij het invoeren moeten de getallen gescheiden worden door \'e\'en of meerdere spaties. Het aantal spaties maakt dus niet uit; deze worden overgeslagen. Als je in C programma een getal inleest met \lstinline|scanf| dan gebeuren er vreemde dingen als je in plaats van een getal letters intypt. Bijvoorbeeld:
 
 \begin{lstlisting}
 #include <stdio.h>
@@ -2873,7 +2873,7 @@ eel getal groter dan 0: Geef een geheel getal groter dan 0: Geef een geheel geta
 Het programma gaat nu als een razende te werk en de enige manier om het te stoppen is het programma af te sluiten. Maar hoe komt dat nou?
 
 %\subsubsection*{Buffering}
-Als \lstinline|scanf| voor de eerste keer iets inleest dan zijn er nog geen karakters vanaf het toetsenbord ingevoerd. Daarom vraagt \lstinline|scanf| aan het operating system (Windows, Linux, OS-X) om een karakter. Het operating system weet dat er geen karakters beschikbaar zijn en gaat via interne routines karakters opvragen. Er wordt echter niet één karakter opgevraagd maar een hele reeks die afgesloten moet worden met een <enter>-toets. Je moet als gebruiker dus je invoer altijd afsluiten met een <enter>-toets, ook als je via \lstinline|scanf| maar één karakter inleest. De ingelezen karakters worden ergens in het geheugen opgeslagen. Dit wordt \textsl{buffering} genoemd en de geheugenruimte wordt \textsl{invoerbuffer} genoemd. Er zijn nu karakters beschikbaar en het eerste ingevoerde karakter wordt aan \lstinline|scanf| gegeven.
+Als \lstinline|scanf| voor de eerste keer iets inleest dan zijn er nog geen karakters vanaf het toetsenbord ingevoerd. Daarom vraagt \lstinline|scanf| aan het operating system (Windows, Linux, OS-X) om een karakter. Het operating system weet dat er geen karakters beschikbaar zijn en gaat via interne routines karakters opvragen. Er wordt echter niet \'e\'en karakter opgevraagd maar een hele reeks die afgesloten moet worden met een <enter>-toets. Je moet als gebruiker dus je invoer altijd afsluiten met een <enter>-toets, ook als je via \lstinline|scanf| maar \'e\'en karakter inleest. De ingelezen karakters worden ergens in het geheugen opgeslagen. Dit wordt \textsl{buffering} genoemd en de geheugenruimte wordt \textsl{invoerbuffer} genoemd. Er zijn nu karakters beschikbaar en het eerste ingevoerde karakter wordt aan \lstinline|scanf| gegeven.
 
 Het eerste karakter is de letter \lstinline|H| en dat is geen cijfers. Dus stopt \lstinline|scanf| direct met het inlezen van karakters (die dus alleen cijfers mogen zijn). Het karakter \lstinline|H| blijft hierbij in de invoerbuffer staan. De \lstinline|H| wordt dus niet verwijderd.
 
@@ -2911,7 +2911,7 @@ Geen getal ingevoerd!
 Druk op de Enter toets om dit window te sluiten.
 \end{lstlisting}
 
-Er is nog één probleem. De karakters van \lstinline|Hallo| staan nog steeds in de invoerbuffer. Die zullen we er een voor een uit moeten halen. Dat kan met het onderstaande programma:
+Er is nog \'e\'en probleem. De karakters van \lstinline|Hallo| staan nog steeds in de invoerbuffer. Die zullen we er een voor een uit moeten halen. Dat kan met het onderstaande programma:
 
 \begin{lstlisting}
 #include <stdio.h>
@@ -2937,7 +2937,7 @@ int main(void) {
 
 \end{lstlisting}
 
-De functie \lstinline|getchar| leest één karakter uit de invoerbuffer. Daarna proberen we \lstinline|scanf| opnieuw. Dat mislukt telkens als er een letter gevonden wordt. Als je nu \lstinline|Hallo| invoert, krijg je de volgende uitvoer:
+De functie \lstinline|getchar| leest \'e\'en karakter uit de invoerbuffer. Daarna proberen we \lstinline|scanf| opnieuw. Dat mislukt telkens als er een letter gevonden wordt. Als je nu \lstinline|Hallo| invoert, krijg je de volgende uitvoer:
 
 \begin{lstlisting}[language=,literate=]
 Geef een geheel getal: Hallo
@@ -3079,7 +3079,7 @@ Hierin is \verb|a| de naam van de array en 12 het aantal \textsl{elementen} van 
 \end{tikzpicture}
 \end{figure}
 
-Te zien is dat de array begint bij element 0 en eindigt bij element 11. In C begint een array altijd bij element~0. Het laatste of hoogste element is één minder dan de lengte van de array. In het voorbeeld is het laatste element dus 11.
+Te zien is dat de array begint bij element 0 en eindigt bij element 11. In C begint een array altijd bij element~0. Het laatste of hoogste element is \'e\'en minder dan de lengte van de array. In het voorbeeld is het laatste element dus 11.
 
 %\begin{figure}[H]
 %\centering
@@ -3105,10 +3105,9 @@ De lengte van de array komt overeen met het aantal initializers. Om een array me
 int a[12] = { 0 };
 \end{lstlisting}
 
-Element 0 wordt expliciet met 0 geïnitialiseerd. De overige elementen worden, conform de C-standaard, altijd met 0 geïnitialiseerd, ook als de eerste initializer ongelijk aan 0 is.
+Element 0 wordt expliciet met 0 ge\"initialiseerd. De overige elementen worden, conform de C-standaard, altijd met 0 ge\"initialiseerd, ook als de eerste initializer ongelijk aan 0 is.
 
-
- Om een element uit een array te gebruiken, moeten de naam van de array en het elementnummer (tussen blokhaken) worden opgegeven. Het onderstaande voorbeeld kopieert element 3 uit de array in variabele \lstinline|getal|:
+Om een element uit een array te gebruiken, moeten de naam van de array en het elementnummer (tussen blokhaken) worden opgegeven. Het onderstaande voorbeeld kopieert element 3 uit de array in variabele \lstinline|getal|:
 
 \begin{lstlisting}
 int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
@@ -3148,7 +3147,7 @@ for (i=0; i<12; i=i+1) {
 ...
 \end{lstlisting}
 
-De lengte (of grootte) van een array is te bepalen met behulp van de keyword \lstinline|sizeof|. Let daarbij op dat \lstinline|sizeof| de grootte in \textsl{bytes} berekend. Om het aantal elementen van de array te bepalen, moet de grootte in bytes nog worden gedeeld door de grootte van één element:
+De lengte (of grootte) van een array is te bepalen met behulp van de keyword \lstinline|sizeof|. Let daarbij op dat \lstinline|sizeof| de grootte in \textsl{bytes} berekend. Om het aantal elementen van de array te bepalen, moet de grootte in bytes nog worden gedeeld door de grootte van \'e\'en element:
 
 \begin{lstlisting}
 array_size = sizeof a / sizeof a[0];
@@ -3177,7 +3176,7 @@ Een uitbeelding van de string is hieronder te zien:
 \end{tikzpicture}
 \end{figure}
 
-Let erop dat de array dus één element groter is dan het aantal karakters in de array. Dit is een veel gemaakte fout bij het afhandelen van strings (een zogenoemde \textsl{off-by-one error}). Omdat het null-byte het einde van de string aangeeft, kunnen we er gebruik van maken, bijvoorbeeld voor het bepalen van de lengte van de string. Hieronder zie je een mogelijke implementatie van de functie \lstinline|strlen|:
+Let erop dat de array dus \'e\'en element groter is dan het aantal karakters in de array. Dit is een veel gemaakte fout bij het afhandelen van strings (een zogenoemde \textsl{off-by-one error}). Omdat het null-byte het einde van de string aangeeft, kunnen we er gebruik van maken, bijvoorbeeld voor het bepalen van de lengte van de string. Hieronder zie je een mogelijke implementatie van de functie \lstinline|strlen|:
 
 \begin{lstlisting}
 int stringlength(char str[]) {   /* use another function name to prevent */
@@ -3276,7 +3275,7 @@ Pointers kunnen worden aangepast. De naam van een array kan \textsl{niet} worden
 \end{tikzpicture}
 \end{figure}
 
- We kunnen \lstinline|pstr| dus wel aanpassen en \lstinline|str| niet:
+We kunnen \lstinline|pstr| dus wel aanpassen en \lstinline|str| niet:
 
 \begin{lstlisting}
 char *pstr = "Hello";  /* pstr: pointer to first address of array */
@@ -3315,5 +3314,224 @@ Een NULL-pointer mag niet gebruikt worden om een variabele te benaderen. Dit wor
 char *p = NULL;
 *p = *p + 1;        /* Oops!!! */
 \end{lstlisting}
+
+\section{Command line argumenten en bestandsafhandeling in C}
+In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In dit document doen we dat in een zogenoemde DOS-box onder Windows.
+
+\subsection{Command line argumenten}
+In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline|myprog.exe| gestart wordt met de argumenten \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. Het programma drukt eenvoudigweg alle argumenten op het beeldscherm af. Te zien is dat ook de programmanaam als argument wordt meegegeven.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{myprog.png}
+	\caption{Voorbeeld van een commando met argumenten.}
+	\label{fig:vbarg}
+\end{figure}
+
+%%%\begin{lstlisting}[caption=Voorbeeld van een commando met argumenten.,label=cod:vbarg]
+%%%myprog.exe argument1 argument2
+%%%\end{lstlisting}
+
+Elk C-programma krijgt per definitie de twee parameters \lstinline|argc| en \lstinline|argv| mee, die aan \lstinline|main()| worden meegegeven. Dit is te zien in listing~\ref{cod:defsarg}.
+
+\begin{figure}[!ht]
+	\begin{lstlisting}[caption=Declaratie van de command line parameters.,label=cod:defsarg]
+	int main(int argc, char *argv[]) {
+	
+	/* rest of the code */
+	
+	return 0;
+	}
+	\end{lstlisting}
+\end{figure}
+
+De integer \lstinline|argc| (\textbf{arg}ument \textbf{c}ount) geeft aan hoeveel parameters aan het C-programma zijn meegegeven. De pointer \lstinline|*argv[]| (\textbf{arg}ument \textbf{v}ector) is  een pointer naar een lijst van pointers naar strings. Elke string bevat een argument. Per definitie wijst \lstinline|argv[0]| naar een string waarin de programmanaam vermeld staat. Dat houdt in dat \lstinline|argc| dus minstens 1 is. Er zijn dan geen optionele argumenten meegegeven.
+
+In het voorbeeldprogramma is \lstinline|argc| dus 3 en zijn \lstinline|argv[0]|, \lstinline|argv[1]| en \lstinline|argv[2]| pointers naar respectievelijk \lstinline[literate=]|myprog.exe|, \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. In figuur~\ref{fig:argcargv} is een uitbeelding van de variabelen \lstinline|argc| en \lstinline|argv| te zien. De strings worden, zoals gebruikelijk in C, afgesloten met een \lstinline[literate=]|\0|-karakter. De C-standaard schrijft voor dat de lijst van strings wordt afgesloten met een \lstinline|null|-adres.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.55]{argcargv.pdf}
+	\caption{Uitbeelding van de variabelen argc en argv.}
+	\label{fig:argcargv}
+\end{figure}
+
+Het programma \lstinline|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. Het programma drukt eerst de variabele \lstinline|argc| af. Met behulp van een \lstinline|for|-lus worden de argumenten \'e\'en voor \'e\'en afgedrukt. Merk op dat \lstinline|argv[i]| een pointer is naar het $i^e$ argument. We kunnen \lstinline|argv[i]| dus direct gebruiken voor het afdrukken van de bijbehorende string.
+
+\begin{figure}[H]
+	\begin{lstlisting}[caption=Het programma myprog.exe.,label=cod:myprogexe]
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	int main(int argc, char *argv[]) {
+	
+	int i;
+	
+	printf("\nAantal argumenten: %d\n\n", argc);
+	for (i = 0; i<argc; i++) {
+	printf("Argument %d: %s\n", i, argv[i]);
+	}
+	return 0;
+	}
+	\end{lstlisting}
+\end{figure}
+
+\subsection{Bestandsafhandeling in C}
+In C is het mogelijk om met bestanden op de harde schijf (of USB-stick of SD-card) te werken. We spreken dan over File I/O.
+
+In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-adres terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
+
+\begin{figure}[H]
+	\begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	int main()
+	{
+	FILE *outfile;
+	
+	outfile = fopen("C:\\temp\\testbestand.txt", "w");
+	
+	if (outfile == NULL) {
+	printf("Bestand kan niet geopend worden.\n");
+	} else {
+	fprintf(outfile, "Een stukje tekst\n");
+	fclose(outfile);
+	}
+	
+	return 0;
+	}
+	\end{lstlisting}
+\end{figure}
+
+Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt weer gebruik gemaakt van een \lstinline|FILE|-pointer, in dit geval de pointer \lstinline|infile|.  Het genoemde bestand wordt weer geopend met de functie \lstinline|fopen| maar ditmaal met als tweede argument \lstinline|"r"| wat staat voor lezen uit een bestand. Mocht om \'e\'en of andere reden het bestand niet geopend kunnen worden, dan geeft \lstinline|fopen| een \lstinline|null|-adres terug. Hier testen we op in regel~11.
+
+In de regels 14 t/m 16 worden de karakters \'e\'en voor \'e\'en ingelezen en afgedrukt op het beeldscherm. We zien hier een typische C-\lstinline|while|-constructie.  Er wordt een karakter ingelezen door middel van de functie \lstinline|fgetc| en toegekend aan de variabele \lstinline|ch|. Tegelijkertijd wordt getest of het ingelezen karakter gelijk is aan \lstinline|EOF| wat staat voor end-of-file. Zolang dat niet het geval is wordt het karakter afgedrukt met de functie \lstinline|printf|.
+
+\begin{figure}[!t]
+	\begin{lstlisting}[caption=Voorbeeld lezen uit een bestand.,label=cod:readfile]
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	int main()
+	{
+	FILE *infile;
+	int ch;
+	
+	infile = fopen("C:\\temp\\testbestand.txt", "r");
+	
+	if (infile == NULL) {
+	printf("Kan bestand niet openen.");
+	} else {
+	while ((ch = fgetc(infile)) != EOF) {
+	printf("%c", ch);
+	}
+	}
+	
+	fclose(infile);
+	
+	return 0;
+	}
+	\end{lstlisting}
+\end{figure}
+
+\subsection{Command line argumenten en bestandsafhandeling}
+Het laatste voorbeeld betreft het kopi\"eren van een bestand. We gebruiken de command line argumenten om de bestandsnamen door te geven en bestandsafhandeling om het daadwerkelijke kopi\"eren te realiseren. Het programma is te vinden in listing~\ref{cod:filecopy}.
+
+We declareren eerst de pointers voor de twee bestanden, dit is te zien in regel~8.  In regel~10 declareren we twee integers, \'e\'en voor de in te lezen karakters en \'e\'en voor het bijhouden hoeveel karakters er zijn gekopieerd. In de regels~14 t/m~17 testen we of het aantal opgegeven argumenten drie is. Zo niet, dan drukken we een helptekst af om de gebruiker te informeren hoe het commando moet worden gebruikt. Tevens wordt het programma afgesloten met een \lstinline|return|-statement.  Deze geeft de waarde $-1$ terug aan het besturingssysteem, een gebruikelijke techniek in Unix-achtige omgevingen om foutmeldingen door te geven.
+
+In de regels~20 t/m~23 wordt getest of de namen van de twee bestanden identiek zijn.  Dat mag natuurlijk niet anders wordt het leesbestand overschreven. We geven een passende foutmelding en verlaten het programma middels een \lstinline|return|-statement met de waarde~$-2$.
+
+\begin{figure}[!p]
+	\begin{lstlisting}[caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+	
+	int main(int argc, char *argv[]) {
+	
+	/* The input and output file handlers */
+	FILE *infile, *outfile;
+	
+	/* Character to read and character count */
+	int ch, count = 0;
+	
+	/* We need exactly 3 arguments */
+	if (argc != 3) {
+	printf("Usage: %s infile outfile\n", argv[0]);
+	return -1;
+	}
+	
+	/* Test if input file and output file have the same name */
+	if (strcmp(argv[1], argv[2]) == 0) {
+	printf("Filenames cannot be the same\n");
+	return -2;
+	}
+	
+	/* Open the input file, exit if error */
+	infile = fopen(argv[1], "r");
+	if (infile == NULL) {
+	printf("Cannot open input file %s\n", argv[1]);
+	return -3;
+	}
+	
+	/* Open the output file, exit if error */
+	outfile = fopen(argv[2], "w");
+	if (outfile == NULL) {
+	printf("Cannot open output file %s\n", argv[2]);
+	fclose(infile);
+	return -4;
+	}
+	
+	/* Copy characters from input file to output file */
+	while ((ch = fgetc(infile)) != EOF) {
+	count++;
+	fprintf(outfile, "%c", ch);
+	}
+	
+	printf("Copied %d characters\n", count);
+	
+	fclose(infile);
+	fclose(outfile);
+	
+	return 0;
+	}
+	\end{lstlisting}
+\end{figure}
+
+In de regels~26 t/m 30 wordt het leesbestand geopend. We hebben dit al eerder besproken. In de regels~33 t/m 38 wordt het schrijfbestand geopend. Ook dit is al eerder besproken. Het daadwerkelijke kopi\"eren gebeurt in de regels~41 t/m 44. Tevens wordt bijgehouden hoeveel karakters er zijn gekopieerd. Dit aantal wordt afgedrukt in regel~46.
+
+We ronden het programma af door het leesbestand en schrijfbestand af te sluiten. Een aantal voorbeelden van het gebruik van het programma is te zien in figuur~\ref{fig:filecopy}.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{filecopy.png}
+	\caption{Voorbeelden van het kopieerprogramma.}
+	\label{fig:filecopy}
+\end{figure}
+
+\subsection{Openen van een DOS-box op Windows}
+Een DOS-box kan je openen via de Start-knop (in het voorbeeld onder Windows 7).  Klik op Start en vul in het kader de tekst \lstinline[language=,literate=]|cmd.exe| in. Druk op de enter-toets en een DOS-box wordt geopend. Zie figuur~\ref{fig:cmdexe}.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.63]{cmdexe.png}
+	\caption{Openen van een DOS-box.}
+	\label{fig:cmdexe}
+\end{figure}
+
+Vervolgens kun je navigeren naar de \textsl{executable} (uitvoerbaar programma) middels het commando \lstinline|cd| (change directory). In het voorbeeld van figuur~\ref{fig:filecopy} doe je als volgt:
+
+\lstinline|cd \Users\JouwNaam\Documents\CodeBlocks\filecopy\bin\Debug|
+
+Vul voor \lstinline|JouwNaam| je gebruikersnaam in waarmee je inlogt. We gaan er hier trouwens vanuit dat je de programma's in de map \lstinline|CodeBlocks| zet die in de map \lstinline|Documents| staat.
+
+Als je je programma's op een andere schijf geplaatst hebt, moet je eerst van schijf veranderen.  Stel dat je je programma's op de \lstinline|D:|-schijf hebt geplaatst, dan verander je van schijf met het commando:
+
+\lstinline|D:|
+
+Daarna kan je naar je map navigeren, bijvoorbeeld:
+
+\lstinline|cd \PROJECTS\CodeBlocks\filecopy\bin\Debug|
 
 \end{document}
