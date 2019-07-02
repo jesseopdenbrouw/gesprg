@@ -3,16 +3,18 @@
 % !TeX TS-program = xelatex
 
 %%
-%%   GESPRG_practicumdocument - Exercizes for programming in C
+%%   GESPRG_practicumdocument - Exercises for programming in C
 %%
 %%   (c) 2019  --  The Hague University of Applied Sciences (THUAS)
 %%
 %%   Please mail your comments to: J.E.J.opdenBrouw@hhs.nl
 %%
+%%   Compile this document with xelatex or pdflatex at your choice
+%%
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\delta$}
+\def\version{1.999$\varepsilon$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -135,20 +137,11 @@
   numbersep=8pt,
   keywordstyle=\bfseries\color{keyword},
   stringstyle=\color{blue},
-%  keywords=[2]{printf,getchar,scanf,fflush,sqrt,pow,fib,faculteit,catalan,catalanRecursief,collatzSteps,f,leesGetal,max2,max5,gemiddelde,leesEnBerekenSom,leesCijfer,isisolatedprime,isprime,leesEnBerekenSom,leesEnBerekenMod9,reverse,strrev,is_palindroom,controleerNedEuroID,doorsnede,uniek,roll_dice,rand},
-%  keywordstyle=[2]\color{orange},
-%  keywords=[3]{<stdio.h>},
-%  keywordstyle=[3]\color{orange},
-%  keywords=[4]{main},
-%  keywordstyle=[4]\color{purple},
   commentstyle=\itshape\color{comment},
   morecomment=[l][\color{cppgreen}]{\#},
-%  backgroundcolor=\color{lightgray},
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
-%  columns=fixed,
-%   basewidth={0.6em,0.6em},
   frame=lines,
   rulecolor=\color{black},
   tabsize=4,
@@ -158,8 +151,8 @@
   title=\lstname,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
   upquote=true,
-  aboveskip=2ex,
-  belowskip=-2ex,
+  aboveskip=2.5ex,
+  belowskip=-2.2ex,
   escapeinside={(*}{*)},
   literate=%
     *{0}{{{\textcolor{number}0}}}1
@@ -227,14 +220,14 @@
 \PassOptionsToPackage{hyphens}{url}
 \usepackage{hyperref}
 \hypersetup{
-	colorlinks=true,
-	linkcolor=blue,
-	citecolor=purple,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=purple,
     pdftitle={Gestructureed programmeren in C, practicumopdrachten},
     pdfauthor={De Haagse Hogeschool, Opleiding Elektrotechniek},
     pdfsubject={},
-    pdfkeywords={},
-	pdfdisplaydoctitle=true,
+    pdfkeywords={C, compiler, excersises},
+    pdfdisplaydoctitle=true,
 }
 \urlstyle{sf}%
 
@@ -622,9 +615,11 @@ Code::Blocks draait op Windows (7, 8, 8.1, 10), op Linux (Ubuntu, Debian, Fedora
 
 Gebruikers van een iMac kunnen ook gebruik maken van \href{https://developer.apple.com/xcode/}{Xcode} die door Apple zelf ontwikkeld is. De functies van Xcode zijn vergelijkbaar met Code::Blocks.
 
+Gebruikers van Windows kunnen ook Microsoft’s \href{https://visualstudio.microsoft.com/vs/community/}{Visual Studio Community} installeren. Visual Studio wordt door zeer veel bedrijven gebruikt. De Community editie is gratis te gebruiken maar je moet wel een Microsoft account aanmaken (of hebben).
+
 Die-hard Linux-gebruikers kunnen natuurlijk ook in een terminal de GNU-C-compiler direct gebruiken.
 
-Gebruikers van Windows kunnen ook Microsoft’s \href{https://visualstudio.microsoft.com/vs/community/}{Visual Studio Community} installeren. Visual Studio wordt door zeer veel bedrijven gebruikt. De Community editie is gratis te gebruiken maar je moet wel een Microsoft account aanmaken (of hebben).
+Als je niet de beschikking hebt over een laptop, dan kan je ook online je programma's ontwikkelen. Zie hier de site \url{http://www.onlinegdb.com/}. Alleen voor de afsluitende opdracht heb je een laptop nodig.
 
 \subsection{Introductie Code::Blocks IDE}
 
@@ -2759,7 +2754,7 @@ Met argumenten op de command-line wordt het volgende bedoeld:
 
 Het is dus \textbf{niet} de bedoeling dat na het starten van het programma de gebruiker om twee bestandsnamen wordt gevraagd of dat de bestandsnamen hard gecodeerd zijn in het programma. Verder moet getest worden of de bestanden wel geopend kunnen worden. Zo niet, dan moet dat aan de gebruiker worden medegedeeld. Als een gebruiker je programma start met teveel of te weinig argumenten, dan moet je dat aan de gebruiker mededelen. Ga er niet vanuit dat de gebruiker de inhoud van de bestanden zo formatteert dat het direct in je programma werkt. Je moet dus de ingelezen data wel controleren of het voldoet aan het formaat dat je kan verwerken (denk bijvoorbeeld aan letters i.p.v. getallen). Maak je programma flexibel. Dus niet voorschrijven dat je precies 10 getallen moet invoeren (maar om het eenvoudig te houden: niet meer dan 1000) of dat een regel precies 20 karakters moet hebben. Bedenk ook wat er moet gebeuren als een invoerbestand leeg is.
 
-
+Zie bijlage~\ref{sec:argcargv} voor meer informatie en voorbeelden.
 
 
 \appendix
@@ -2856,6 +2851,7 @@ int main(void) {
 }
 \end{lstlisting}
 
+\newpage
 De uitvoer is nu:
 
 \begin{lstlisting}[language=,literate=,basicstyle=\fontsize{8.775}{10}\ttfamily]
@@ -2959,7 +2955,7 @@ Natuurlijk willen niet steeds dat bij elk karakter een melding op het scherm wor
 Gelukkig zorgt het operating system ervoor dat ook het end-of-line-karakter in de invoerbuffer terecht komt. We kunnen dus hierop testen. Hoe dat moet, is te zien in de onderstaande code:
 
 \begin{lstlisting}
-   do { ch = getchar(); } while (ch != '\n' && ch != EOF);
+do { ch = getchar(); } while (ch != '\n' && ch != EOF);
 \end{lstlisting}
 
 We lezen een karakter van de invoerbuffer en dat doen we zolang dat karakter ongelijk is aan \lstinline|\n| (end-of-line-karakter) en ongelijk is aan \lstinline|EOF| (end-of-file).
@@ -3007,6 +3003,7 @@ Toch zijn er wel C-implementaties die het flushen van een invoerbuffer uitvoeren
 
 Hieronder is de code te vinden van het flushen van de invoerbuffer van het toetsenbord m.b.v.\@ \lstinline|fflush|:
 
+\newpage
 \begin{lstlisting}
 /* Please note: might not works on all Operating Systems. */
 #include <stdio.h>
@@ -3239,12 +3236,14 @@ a = *pa + 1;   /* also works */
 
 Array's en pointers hebben een sterke relatie. De \textsl{naam van een array} is een \textsl{synoniem} van een pointer naar het eerste element van een array:
 
+\begin{figure}[!ht]
 \begin{lstlisting}
 int a[12] = {9,5,13,19,12,8,7,4,21,2,6,3};
 int *pa;
 
 pa = a; /* of: pa = &a[0]; */
 \end{lstlisting}
+\end{figure}
 
 \begin{figure}[!ht]
 \centering
@@ -3335,33 +3334,61 @@ In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline|myprog.exe| ge
 Elk C-programma krijgt per definitie de twee parameters \lstinline|argc| en \lstinline|argv| mee, die aan \lstinline|main()| worden meegegeven. Dit is te zien in listing~\ref{cod:defsarg}.
 
 \begin{figure}[!ht]
-	\begin{lstlisting}[caption=Declaratie van de command line parameters.,label=cod:defsarg]
-	int main(int argc, char *argv[]) {
+\begin{lstlisting}[caption=Declaratie van de command line parameters.,label=cod:defsarg]
+int main(int argc, char *argv[]) {
 	
 	/* rest of the code */
 	
 	return 0;
-	}
-	\end{lstlisting}
+}
+\end{lstlisting}
 \end{figure}
 
 De integer \lstinline|argc| (\textbf{arg}ument \textbf{c}ount) geeft aan hoeveel parameters aan het C-programma zijn meegegeven. De pointer \lstinline|*argv[]| (\textbf{arg}ument \textbf{v}ector) is  een pointer naar een lijst van pointers naar strings. Elke string bevat een argument. Per definitie wijst \lstinline|argv[0]| naar een string waarin de programmanaam vermeld staat. Dat houdt in dat \lstinline|argc| dus minstens 1 is. Er zijn dan geen optionele argumenten meegegeven.
 
 In het voorbeeldprogramma is \lstinline|argc| dus 3 en zijn \lstinline|argv[0]|, \lstinline|argv[1]| en \lstinline|argv[2]| pointers naar respectievelijk \lstinline[literate=]|myprog.exe|, \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. In figuur~\ref{fig:argcargv} is een uitbeelding van de variabelen \lstinline|argc| en \lstinline|argv| te zien. De strings worden, zoals gebruikelijk in C, afgesloten met een \lstinline[literate=]|\0|-karakter. De C-standaard schrijft voor dat de lijst van strings wordt afgesloten met een \lstinline|null|-adres.
 
+%%\begin{figure}[!ht]
+%%\centering
+%%\includegraphics[scale=0.55]{argcargv.pdf}
+%%\caption{Uitbeelding van de variabelen argc en argv.}
+%%\label{fig:argcargv}
+%%\end{figure}
+
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.55]{argcargv.pdf}
-	\caption{Uitbeelding van de variabelen argc en argv.}
-	\label{fig:argcargv}
+\centering
+\begin{tikzpicture}
+\node (argc) at (0,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {3};
+\node at ([yshift=3mm]argc.north) {argc:};
+\node (argv) at (3,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
+\node at ([yshift=3mm]argv.north) {argv:};
+\draw[fill] (argv.center) circle [radius=1.5pt];
+\node (argv0) at (6,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
+\node (argv1) at (6,-0.6) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
+\node (argv2) at (6,-1.2) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
+\node (argv3) at (6,-1.8) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {NULL};
+\draw[-latex] (argv.center) -- (argv0.west);
+\node (argv0s) at (8,0) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {myprog.exe\textbackslash 0};
+\node (argv1s) at (8,-0.6) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {argument1\textbackslash 0};
+\node (argv2s) at (8,-1.2) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {argument2\textbackslash 0};
+\draw[fill] (argv0.center) circle [radius=1.5pt];
+\draw[fill] (argv1.center) circle [radius=1.5pt];
+\draw[fill] (argv2.center) circle [radius=1.5pt];
+\draw[-latex] (argv0.center) -- (argv0s.west);
+\draw[-latex] (argv1.center) -- (argv1s.west);
+\draw[-latex] (argv2.center) -- (argv2s.west);
+\end{tikzpicture}
+\caption{Uitbeelding van de variabelen argc en argv.}
+\label{fig:argcargv}
 \end{figure}
+
 
 Het programma \lstinline|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. Het programma drukt eerst de variabele \lstinline|argc| af. Met behulp van een \lstinline|for|-lus worden de argumenten \'e\'en voor \'e\'en afgedrukt. Merk op dat \lstinline|argv[i]| een pointer is naar het $i^e$ argument. We kunnen \lstinline|argv[i]| dus direct gebruiken voor het afdrukken van de bijbehorende string.
 
 \begin{figure}[H]
-	\begin{lstlisting}[caption=Het programma myprog.exe.,label=cod:myprogexe]
-	#include <stdio.h>
-	#include <stdlib.h>
+\begin{lstlisting}[caption=Het programma myprog.exe.,label=cod:myprogexe]
+#include <stdio.h>
+#include <stdlib.h>
 	
 	int main(int argc, char *argv[]) {
 	
@@ -3369,11 +3396,11 @@ Het programma \lstinline|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. 
 	
 	printf("\nAantal argumenten: %d\n\n", argc);
 	for (i = 0; i<argc; i++) {
-	printf("Argument %d: %s\n", i, argv[i]);
+		printf("Argument %d: %s\n", i, argv[i]);
 	}
 	return 0;
-	}
-	\end{lstlisting}
+}
+\end{lstlisting}
 \end{figure}
 
 \subsection{Bestandsafhandeling in C}
@@ -3382,26 +3409,26 @@ In C is het mogelijk om met bestanden op de harde schijf (of USB-stick of SD-car
 In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-adres terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
 
 \begin{figure}[H]
-	\begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
-	#include <stdio.h>
-	#include <stdlib.h>
+\begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
+#include <stdio.h>
+#include <stdlib.h>
 	
-	int main()
-	{
+int main() {
+
 	FILE *outfile;
 	
 	outfile = fopen("C:\\temp\\testbestand.txt", "w");
 	
 	if (outfile == NULL) {
-	printf("Bestand kan niet geopend worden.\n");
+		printf("Bestand kan niet geopend worden.\n");
 	} else {
-	fprintf(outfile, "Een stukje tekst\n");
-	fclose(outfile);
+		fprintf(outfile, "Een stukje tekst\n");
+		fclose(outfile);
 	}
 	
 	return 0;
-	}
-	\end{lstlisting}
+}
+\end{lstlisting}
 \end{figure}
 
 Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt weer gebruik gemaakt van een \lstinline|FILE|-pointer, in dit geval de pointer \lstinline|infile|.  Het genoemde bestand wordt weer geopend met de functie \lstinline|fopen| maar ditmaal met als tweede argument \lstinline|"r"| wat staat voor lezen uit een bestand. Mocht om \'e\'en of andere reden het bestand niet geopend kunnen worden, dan geeft \lstinline|fopen| een \lstinline|null|-adres terug. Hier testen we op in regel~11.
@@ -3409,95 +3436,39 @@ Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt w
 In de regels 14 t/m 16 worden de karakters \'e\'en voor \'e\'en ingelezen en afgedrukt op het beeldscherm. We zien hier een typische C-\lstinline|while|-constructie.  Er wordt een karakter ingelezen door middel van de functie \lstinline|fgetc| en toegekend aan de variabele \lstinline|ch|. Tegelijkertijd wordt getest of het ingelezen karakter gelijk is aan \lstinline|EOF| wat staat voor end-of-file. Zolang dat niet het geval is wordt het karakter afgedrukt met de functie \lstinline|printf|.
 
 \begin{figure}[!t]
-	\begin{lstlisting}[caption=Voorbeeld lezen uit een bestand.,label=cod:readfile]
-	#include <stdio.h>
-	#include <stdlib.h>
+\begin{lstlisting}[caption=Voorbeeld lezen uit een bestand.,label=cod:readfile]
+#include <stdio.h>
+#include <stdlib.h>
 	
-	int main()
-	{
+int main() {
+
 	FILE *infile;
 	int ch;
 	
 	infile = fopen("C:\\temp\\testbestand.txt", "r");
 	
 	if (infile == NULL) {
-	printf("Kan bestand niet openen.");
+		printf("Kan bestand niet openen.");
 	} else {
-	while ((ch = fgetc(infile)) != EOF) {
-	printf("%c", ch);
-	}
+		while ((ch = fgetc(infile)) != EOF) {
+			printf("%c", ch);
+		}
 	}
 	
 	fclose(infile);
 	
 	return 0;
-	}
-	\end{lstlisting}
+}
+\end{lstlisting}
 \end{figure}
 
 \subsection{Command line argumenten en bestandsafhandeling}
-Het laatste voorbeeld betreft het kopi\"eren van een bestand. We gebruiken de command line argumenten om de bestandsnamen door te geven en bestandsafhandeling om het daadwerkelijke kopi\"eren te realiseren. Het programma is te vinden in listing~\ref{cod:filecopy}.
+\label{sec:argcargv}
+Het laatste voorbeeld betreft het kopi\"eren van een bestand. We gebruiken de command line argumenten om de bestandsnamen door te geven en bestandsafhandeling om het daadwerkelijke kopi\"eren te realiseren. Het programma is te vinden in listing~\ref{cod:filecopy} op pagina~\pageref{cod:filecopy} .
 
 We declareren eerst de pointers voor de twee bestanden, dit is te zien in regel~8.  In regel~10 declareren we twee integers, \'e\'en voor de in te lezen karakters en \'e\'en voor het bijhouden hoeveel karakters er zijn gekopieerd. In de regels~14 t/m~17 testen we of het aantal opgegeven argumenten drie is. Zo niet, dan drukken we een helptekst af om de gebruiker te informeren hoe het commando moet worden gebruikt. Tevens wordt het programma afgesloten met een \lstinline|return|-statement.  Deze geeft de waarde $-1$ terug aan het besturingssysteem, een gebruikelijke techniek in Unix-achtige omgevingen om foutmeldingen door te geven.
 
 In de regels~20 t/m~23 wordt getest of de namen van de twee bestanden identiek zijn.  Dat mag natuurlijk niet anders wordt het leesbestand overschreven. We geven een passende foutmelding en verlaten het programma middels een \lstinline|return|-statement met de waarde~$-2$.
-
-\begin{figure}[!p]
-	\begin{lstlisting}[caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
-	
-	int main(int argc, char *argv[]) {
-	
-	/* The input and output file handlers */
-	FILE *infile, *outfile;
-	
-	/* Character to read and character count */
-	int ch, count = 0;
-	
-	/* We need exactly 3 arguments */
-	if (argc != 3) {
-	printf("Usage: %s infile outfile\n", argv[0]);
-	return -1;
-	}
-	
-	/* Test if input file and output file have the same name */
-	if (strcmp(argv[1], argv[2]) == 0) {
-	printf("Filenames cannot be the same\n");
-	return -2;
-	}
-	
-	/* Open the input file, exit if error */
-	infile = fopen(argv[1], "r");
-	if (infile == NULL) {
-	printf("Cannot open input file %s\n", argv[1]);
-	return -3;
-	}
-	
-	/* Open the output file, exit if error */
-	outfile = fopen(argv[2], "w");
-	if (outfile == NULL) {
-	printf("Cannot open output file %s\n", argv[2]);
-	fclose(infile);
-	return -4;
-	}
-	
-	/* Copy characters from input file to output file */
-	while ((ch = fgetc(infile)) != EOF) {
-	count++;
-	fprintf(outfile, "%c", ch);
-	}
-	
-	printf("Copied %d characters\n", count);
-	
-	fclose(infile);
-	fclose(outfile);
-	
-	return 0;
-	}
-	\end{lstlisting}
-\end{figure}
 
 In de regels~26 t/m 30 wordt het leesbestand geopend. We hebben dit al eerder besproken. In de regels~33 t/m 38 wordt het schrijfbestand geopend. Ook dit is al eerder besproken. Het daadwerkelijke kopi\"eren gebeurt in de regels~41 t/m 44. Tevens wordt bijgehouden hoeveel karakters er zijn gekopieerd. Dit aantal wordt afgedrukt in regel~46.
 
@@ -3533,5 +3504,62 @@ Als je je programma's op een andere schijf geplaatst hebt, moet je eerst van sch
 Daarna kan je naar je map navigeren, bijvoorbeeld:
 
 \lstinline|cd \PROJECTS\CodeBlocks\filecopy\bin\Debug|
+
+\begin{figure}[!p]
+\begin{lstlisting}[caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+	
+int main(int argc, char *argv[]) {
+	
+	/* The input and output file handlers */
+	FILE *infile, *outfile;
+	
+	/* Character to read and character count */
+	int ch, count = 0;
+	
+	/* We need exactly 3 arguments */
+	if (argc != 3) {
+		printf("Usage: %s infile outfile\n", argv[0]);
+		return -1;
+	}
+	
+	/* Test if input file and output file have the same name */
+	if (strcmp(argv[1], argv[2]) == 0) {
+		printf("Filenames cannot be the same\n");
+		return -2;
+	}
+	
+	/* Open the input file, exit if error */
+	infile = fopen(argv[1], "r");
+	if (infile == NULL) {
+		printf("Cannot open input file %s\n", argv[1]);
+		return -3;
+	}
+	
+	/* Open the output file, exit if error */
+	outfile = fopen(argv[2], "w");
+	if (outfile == NULL) {
+		printf("Cannot open output file %s\n", argv[2]);
+		fclose(infile);
+		return -4;
+	}
+	
+	/* Copy characters from input file to output file */
+	while ((ch = fgetc(infile)) != EOF) {
+		count++;
+		fprintf(outfile, "%c", ch);
+	}
+	
+	printf("Copied %d characters\n", count);
+	
+	fclose(infile);
+	fclose(outfile);
+	
+	return 0;
+}
+\end{lstlisting}
+\end{figure}
 
 \end{document}
