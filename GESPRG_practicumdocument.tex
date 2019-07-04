@@ -3319,7 +3319,7 @@ char *p = NULL;
 In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In dit document doen we dat in een zogenoemde DOS-box onder Windows.
 
 \subsection{Command line argumenten}
-In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline|myprog.exe| gestart wordt met de argumenten \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. Het programma drukt eenvoudigweg alle argumenten op het beeldscherm af. Te zien is dat ook de programmanaam als argument wordt meegegeven.
+In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline[literate=]|myprog.exe| gestart wordt met de argumenten \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. Het programma drukt eenvoudigweg alle argumenten op het beeldscherm af. Te zien is dat ook de programmanaam als argument wordt meegegeven.
 
 \begin{figure}[!ht]
 	\centering
@@ -3384,7 +3384,7 @@ In het voorbeeldprogramma is \lstinline|argc| dus 3 en zijn \lstinline|argv[0]|,
 \end{figure}
 
 
-Het programma \lstinline|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. Het programma drukt eerst de variabele \lstinline|argc| af. Met behulp van een \lstinline|for|-lus worden de argumenten \'e\'en voor \'e\'en afgedrukt. Merk op dat \lstinline|argv[i]| een pointer is naar het $i^e$ argument. We kunnen \lstinline|argv[i]| dus direct gebruiken voor het afdrukken van de bijbehorende string.
+Het programma \lstinline[literate=]|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. Het programma drukt eerst de variabele \lstinline|argc| af. Met behulp van een \lstinline|for|-lus worden de argumenten \'e\'en voor \'e\'en afgedrukt. Merk op dat \lstinline|argv[i]| een pointer is naar het $i^e$ argument. We kunnen \lstinline|argv[i]| dus direct gebruiken voor het afdrukken van de bijbehorende string.
 
 \begin{figure}[H]
 \begin{lstlisting}[caption=Het programma myprog.exe.,label=cod:myprogexe]
