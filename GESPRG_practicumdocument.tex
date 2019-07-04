@@ -3315,6 +3315,7 @@ char *p = NULL;
 \end{lstlisting}
 
 \section{Command line argumenten en bestandsafhandeling in C}
+\label{sec:argcargv}
 In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In dit document doen we dat in een zogenoemde DOS-box onder Windows.
 
 \subsection{Command line argumenten}
@@ -3463,7 +3464,6 @@ int main() {
 \end{figure}
 
 \subsection{Command line argumenten en bestandsafhandeling}
-\label{sec:argcargv}
 Het laatste voorbeeld betreft het kopi\"eren van een bestand. We gebruiken de command line argumenten om de bestandsnamen door te geven en bestandsafhandeling om het daadwerkelijke kopi\"eren te realiseren. Het programma is te vinden in listing~\ref{cod:filecopy} op pagina~\pageref{cod:filecopy} .
 
 We declareren eerst de pointers voor de twee bestanden, dit is te zien in regel~8.  In regel~10 declareren we twee integers, \'e\'en voor de in te lezen karakters en \'e\'en voor het bijhouden hoeveel karakters er zijn gekopieerd. In de regels~14 t/m~17 testen we of het aantal opgegeven argumenten drie is. Zo niet, dan drukken we een helptekst af om de gebruiker te informeren hoe het commando moet worden gebruikt. Tevens wordt het programma afgesloten met een \lstinline|return|-statement.  Deze geeft de waarde $-1$ terug aan het besturingssysteem, een gebruikelijke techniek in Unix-achtige omgevingen om foutmeldingen door te geven.
