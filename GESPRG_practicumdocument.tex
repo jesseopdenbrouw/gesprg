@@ -14,7 +14,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\varepsilon$}
+\def\version{1.999$\zeta$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -2995,9 +2995,9 @@ Er is nog een andere manier om de invoerbuffer te legen. We kunnen de invoerbuff
 fflush(stdin);
 \end{lstlisting}
 
-Als parameter van \lstinline|fflush| wordt \lstinline|stdin| opgegeven. Dat staat voor \textsl{standard input} en daar wordt in de regel het toetsenbord mee bedoeld\footnote{Op de bekende operating systems is het mogelijk om de inhoud van bestanden door te geven aan de \textsl{standard input}. Het programma krijgt dan data uit een bestand i.p.v\@ het toetsenbord. Dat wordt \textsl{redirection} genoemd.}. Daarnaast kennen we nog \lstinline|stdout| (\textsl{standard output}, het beeldscherm) en \lstinline|stderr| (\textsl{standard error}, meestal ook het beeldscherm).
+Als parameter van \lstinline|fflush| wordt \lstinline|stdin| opgegeven. Dat staat voor \textsl{standard input} en daar wordt in de regel het toetsenbord mee bedoeld\footnote{Op de bekende operating systems is het mogelijk om de inhoud van bestanden door te geven aan de \textsl{standard input}. Het programma krijgt dan data uit een bestand i.p.v.\@ het toetsenbord. Dat wordt \textsl{redirection} genoemd.}. Daarnaast kennen we nog \lstinline|stdout| (\textsl{standard output}, het beeldscherm) en \lstinline|stderr| (\textsl{standard error}, meestal ook het beeldscherm).
  
-\textbf{Deze manier werkt echter niet met alle C-compilers en operating systems}. Dat heeft te maken met de definitie van de functie \lstinline|fflush|. De functie \lstinline|fflush| is bedoeld om uitvoerbuffers te legen. Als de uitvoer naar het beeldscherm is, wordt de buffer naar het beeldscherm geschreven. Als de uitvoer naar een bestand is, wordt de buffer naar het bestand geschreven. De C-standaard schrijft echter alleen voor dat \textsl{flushen} van een uitvoerbuffer gedefinieerd is, niet van een invoerbuffer Niet zo gek eigenlijk, want wat wordt er nou bedoeld met flushen van de invoerbuffer. Flushen van het toetsenbord is het nog te begrijpen maar flushen van een invoerbestand niet. Moeten we dan helemaal tot einde van het bestand flushen? Of alleen maar de bijbehorende buffer? Dat levert een onvoorspelbaar programma op want we weten immers niet hoeveel karakters in de buffer staan.
+\textbf{Deze manier werkt echter niet met alle C-compilers en operating systems}. Dat heeft te maken met de definitie van de functie \lstinline|fflush|. De functie \lstinline|fflush| is bedoeld om uitvoerbuffers te legen. Als de uitvoer naar het beeldscherm is, wordt de buffer naar het beeldscherm geschreven. Als de uitvoer naar een bestand is, wordt de buffer naar het bestand geschreven. De C-standaard schrijft echter alleen voor dat \textsl{flushen} van een uitvoerbuffer gedefinieerd is, niet van een invoerbuffer. Niet zo gek eigenlijk, want wat wordt er nou bedoeld met flushen van de invoerbuffer. Flushen van het toetsenbord is het nog te begrijpen maar flushen van een invoerbestand niet. Moeten we dan helemaal tot einde van het bestand flushen? Of alleen maar de bijbehorende buffer? Dat levert een onvoorspelbaar programma op want we weten immers niet hoeveel karakters in de buffer staan.
 
 Toch zijn er wel C-implementaties die het flushen van een invoerbuffer uitvoeren, bijvoorbeeld de GNU C-compiler op Linux en MinGW op Windows (zit o.a.\@ in Code::Blocks).
 
