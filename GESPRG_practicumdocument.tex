@@ -14,7 +14,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\zeta$}
+\def\version{1.999$\eta$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -39,6 +39,7 @@
 \usepackage{mathtools}
 \setlength{\mathindent}{1em}
 \DeclareMathOperator{\ggd}{ggd}
+\DeclareMathOperator{\sinc}{sinc}
 \DeclareMathSymbol{,}{\mathord}{letters}{"3B}
 %\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}
 \newcommand\strutrule{\rule{0mm}{1.9ex}} %shortcut macro
@@ -2335,6 +2336,15 @@ A(m-1, A(m, n-1)) & \mbox{if } m > 0 \mbox{ and } n > 0.
 \end{equation*}
 
 Schrijf een programma dat de getallen $m$ en $n$, beide geheel een groter dan of gelijk aan nul, inleest en met behulp van een functie de Ackermann-functie berekent en afdrukt met behulp van de bovenstaande recursieve identiteit.
+
+\subsection{sinc}
+In analoge en digitale filters komt veelvuldig de sinc-functie voor. De functie is gedefinieerd als:
+
+\begin{equation*}
+\sinc x= \dfrac{\sin x}{x}
+\end{equation*}
+
+Schrijf een functie \lstinline|double sinc(double x)| die sinc-waarde bepaalt van het getal $x$. Druk de waarden af van $x$ en $\sinc(x)$ van 0,0 t/m 6,0 met een stapgrootte van 0,1.
 
 \subsection{Aantal delers van een geheel getal}
 In de getaltheorie komt een bepaalde klasse van getallen voor met de eigenschap dat zo'n getal alleen deelbaar is 1 en zichzelf. We noemen zo'n getal een \textsl{priemgetal}. Priemgetallen spelen een belangrijke rol bij encryptie.
