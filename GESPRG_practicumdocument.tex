@@ -14,7 +14,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999$\eta$}
+\def\version{1.999}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -38,6 +38,7 @@
 \preto{\section}{\clearpage}
 \usepackage{mathtools}
 \setlength{\mathindent}{1em}
+\DeclareMathOperator{\kgv}{kgv}
 \DeclareMathOperator{\ggd}{ggd}
 \DeclareMathOperator{\sinc}{sinc}
 \DeclareMathSymbol{,}{\mathord}{letters}{"3B}
@@ -227,7 +228,7 @@
     pdftitle={Gestructureed programmeren in C, practicumopdrachten},
     pdfauthor={De Haagse Hogeschool, Opleiding Elektrotechniek},
     pdfsubject={},
-    pdfkeywords={C, compiler, excersises},
+    pdfkeywords={C, compiler, practicumopdrachten},
     pdfdisplaydoctitle=true,
 }
 \urlstyle{sf}%
@@ -610,7 +611,7 @@ Veel succes!
 De practicumdocent zal tijdens het practicum uit hoofdstukken 2 t/m 6 één opdracht aanwijzen die je moet maken. De opdrachten in hoofdstuk 1 moet je allemaal maken. 
 
 \subsection{De gebruikte C-compiler}
-Wij hebben deze opdrachten uitgewerkt met behulp van \href{http://www.codeblocks.org/}{Code::Blocks}. Code::Blocks in een gratis compiler suite met geïntegreerde invoer-omgeving (een zogenoemde IDE = Integrated Development Environment). Hoe je Code::Blocks op je PC kan installeren kun je vinden in bijlage~\ref{sec:installcodeblocks}.
+Wij hebben deze opdrachten uitgewerkt met behulp van \href{http://www.codeblocks.org/}{Code::Blocks}. Code::Blocks in een gratis compiler suite met geïntegreerde invoer-omgeving (een zogenoemde IDE = Integrated Development Environment). Hoe je Code::Blocks op je laptop kan installeren kun je vinden in bijlage~\ref{sec:installcodeblocks}.
 
 Code::Blocks draait op Windows (7, 8, 8.1, 10), op Linux (Ubuntu, Debian, Fedora Core en CentOS). Er is helaas alleen een oudere versie die op OS-X draait.
 
@@ -620,7 +621,7 @@ Gebruikers van Windows kunnen ook Microsoft’s \href{https://visualstudio.micro
 
 Die-hard Linux-gebruikers kunnen natuurlijk ook in een terminal de GNU-C-compiler direct gebruiken.
 
-Als je niet de beschikking hebt over een laptop, dan kan je ook online je programma's ontwikkelen. Zie hier de site \url{http://www.onlinegdb.com/}. Alleen voor de afsluitende opdracht heb je een laptop nodig.
+Als je niet de beschikking hebt over een laptop, dan kan je ook online je programma's ontwikkelen. Zie hiervoor de site \url{http://www.onlinegdb.com/}. Alleen voor de afsluitende opdracht heb je een laptop nodig.
 
 \subsection{Introductie Code::Blocks IDE}
 
@@ -1023,11 +1024,11 @@ Alle spanningen in de schakeling zijn in de beginsituatie 0 V.
 \end{tikzpicture}
 \end{figure}
 
-Op een bepaald moment wordt op de ingang een constante spanning van 10 V aangeboden. De condensator zal hierdoor langzaam ``vollopen'' waardoor de spanning over de condensator stijgt. De snelheid waarmee dat gebeurt, is afhankelijk van de waarden van $R$ en $C$.
+Op een bepaald moment wordt op de ingang een constante spanning van 10 V aangeboden. De condensator zal hierdoor langzaam ``vollopen'' waardoor de spanning over de condensator stijgt. De snelheid waarmee dat gebeurt, is afhankelijk van de waarden van $R$ en $C$ en de tijd $t$.
 De uitgangsspanning $U_{uit}$ als functie van de tijd kan als volgt berekend worden:
 
 \begin{equation*}
-U_{uit} = 10\cdot(1-\mathrm{e}^{-t/RC}) \qquad\qquad\qquad (\text{e is het grondtal van de natuurlijke logaritme, e}\approx\ 2,71828)
+U_{uit}(t) = 10\cdot(1-\mathrm{e}^{-t/RC}) \qquad\qquad\qquad (\text{e is het grondtal van de natuurlijke logaritme, e}\approx\ 2,71828)
 \end{equation*}
 
 %In de formule is het product van $R$ en $C$ is zien. Dit wordt de \textsl{tijdconstante} van de schakeling genoemd.
@@ -1079,7 +1080,7 @@ We willen graag de booglengte weten van één periode van een sinus. We gaan uit
 Nu is de booglengte $s$ exact uit te rekenen met de integraal:
 
 \begin{equation*}
-s = \int_0^{2\pi} \sqrt{1+\cos^2 x}
+s = \int_0^{2\pi} \sqrt{1+\cos^2 x}\, \mathrm{d}x
 \end{equation*}
 
 Helaas is deze integraal niet analytisch oplosbaar. Er zit niets anders op om de lengte numeriek uit te rekenen. Daartoe hanteren we het volgende. We delen de sinus op (via de x-as) in een aantal stukken. In de onderstaande figuur is te zien dat de sinus in vier stukken is opgedeeld (rode lijn) en in zes stukken (groene lijn). De lengte van de rode en groene lijnen benaderen de booglengte van de sinus aardig.
@@ -2206,11 +2207,42 @@ Het hoofdprogramma moet de bovenstaande functies gebruiken.
 
 Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens het nakijken.
 
+%%%\subsection{Grootste gemene deler}
+%%%Er zijn toepassingen waarbij de grootste gemene deler (ggd) van twee positieve getallen bepaald moet worden. De grootste gemene deler van twee gehele getallen is het grootste gehele getal waar deze twee gehele getallen door gedeeld kunnen worden. Zo is de ggd van 24 en 54, geschreven als ggd(24, 54), gelijk aan 6.
+%%%
+%%%Euclides heeft in 300 v.c.\@ een algoritme beschreven (waarschijnlijk niet door hem bedacht) voor het vinden van de ggd. Het is gebaseerd op het recursief aanroepen van een functie:
+%%%
+%%%\begin{equation*}
+%%%\ggd(a,b)= \begin{cases}
+%%%a &\text{als } b = 0 \\
+%%%\ggd(b, a\:\mathrm{mod}\; b) &\text{als } b > 0
+%%%\end{cases}
+%%%\end{equation*}
+%%%
+%%%Schrijf een programma dat de getallen $a$ en $b$, beide geheel een groter dan nul, inleest en de ggd berekent en afdrukt met behulp van de bovenstaande recursieve identiteit.
+%%%
+%%%Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd. Zie eventueel bijlage~\ref{sec:scanf}.
+%%%
+%%%Test het programma met:
+%%%
+%%%\begin{lstlisting}[language=,literate=]
+%%%Geef eerste getal: 24
+%%%Geef tweede getal: 54
+%%%De grootste gemene deler is: 6
+%%%\end{lstlisting}
+%%%
+%%%Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens het nakijken.
 
+\subsection{Kleinste gemene veelvoud}
+Er zijn toepassingen waarbij de \textsl{kleinste gemene veelvoud} (kgv) van twee positieve getallen bepaald moet worden, bijvoorbeeld bij het gelijknamig maken van twee breuken. Het kgv van twee getallen is het kleinste positieve gehele getal dat een veelvoud is van beide getallen, dus het kleinste positieve gehele getal, waarvan beide getallen deler zijn.
 
-\subsection{Grootste gemene deler}
-Er zijn toepassingen waarbij de grootste gemene deler (ggd) van twee positieve getallen bepaald moet worden. De grootste gemene deler van twee gehele getallen is het grootste gehele getal waar deze twee gehele getallen door gedeeld kunnen worden. Zo is de ggd van 24 en 54, geschreven als ggd(24, 54), gelijk aan 6.
+Het kgv van twee getallen $a$ en $b$ kan berekend worden met de formule:
 
+\begin{equation*}
+\kgv(a,b) = \dfrac{a\cdot b}{\ggd(a,b)} \qquad \text{met }a,b > 0
+\end{equation*}
+
+waarbij $\ggd(a,b)$ de \textsl{grootste gemene deler} is van $a$ en $b$. 
 Euclides heeft in 300 v.c.\@ een algoritme beschreven (waarschijnlijk niet door hem bedacht) voor het vinden van de ggd. Het is gebaseerd op het recursief aanroepen van een functie:
 
 \begin{equation*}
@@ -2220,19 +2252,10 @@ a &\text{als } b = 0 \\
 \end{cases}
 \end{equation*}
 
-Schrijf een programma dat de getallen $a$ en $b$, beide geheel een groter dan nul, inleest en de ggd berekent en afdrukt met behulp van de bovenstaande recursieve identiteit.
+Schrijf een functie \lstinline|int kgv(int a, int b)| die de kgv van twee getallen bepaalt. Schrijf verder een functie \lstinline|int ggd(int a, int b)| die de ggd van twee getallen bepaalt door gebruik te maken van de recursieve identiteit.
 
-Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd. Zie eventueel bijlage~\ref{sec:scanf}.
+Schrijf een programma dat de getallen $a$ en $b$, beide geheel een groter dan nul, inleest en de kgv berekent en afdrukt met behulp van de bovenstaande geformuleerde functies voor de kgv en ggd. Zorg ervoor dat bij het inlezen van de getallen voor $a$ en $b$ getest wordt of deze getallen groter zijn dan~0.
 
-Test het programma met:
-
-\begin{lstlisting}[language=,literate=]
-Geef eerste getal: 24
-Geef tweede getal: 54
-De grootste gemene deler is: 6
-\end{lstlisting}
-
-Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens het nakijken.
 
 \subsection{Wortel schieten}
 De Babyloniërs hebben heel lang geleden een methode ontwikkeld voor het vinden van de wortel van een positief getal (of nul, da’s niet zo moeilijk). Het is gebaseerd op het herhaald doorrekenen van een eenvoudige functiebeschrijving:
@@ -2746,7 +2769,7 @@ Schrijf een programma dat een tekstbestand inleest. In het tekstbestand zitten s
 \begin{itemize}
 \item Als het commando \lstinline|\spaces|$\langle$\,\textsl{getal} $\rangle$ wordt gevonden, dan moet dit commando vervangen worden door een aantal spaties dat is opgegeven met het getal $\langle$\,\textsl{getal} $\rangle$. De tekens $\langle$ en $\rangle$ zijn geen onderdeel van het commando. Merk op dat tussen \lstinline|\spaces| en het getal geen spaties staan. Na het getal kan een spatie staan. Als er geen getal wordt gevonden, moet een foutmelding op het scherm volgen.
 \item Als het commando \lstinline|\lines|$\langle$\,\textsl{getal} $\rangle$ wordt gevonden, dan moet dit commando vervangen worden door een aantal lege regels dat is opgegeven met het getal $\langle$\,\textsl{getal} $\rangle$. De tekens $\langle$ en $\rangle$ zijn geen onderdeel van het commando. Merk op dat tussen \lstinline|\liness| en het getal geen spaties staan. Na het getal kan een spatie staan.  Als er geen getal wordt gevonden, moet een foutmelding op het scherm volgen.
-\item Als het commando \lstinline|\nobreak| wordt gevonden, dan moet het end-of-line-karakter aan het einde van de huidige ingelezen regel verwijderd worden. Het end-of-line-karakter wordt dus niet afgedrukt. Merk op dat na \lstinline|\nobreak| altijd een spatie of een end-of-line-karakter moet volgen anders het commando \lstinline|\nobreak| niet te detecteren.
+\item Als het commando \lstinline|\nobreak| wordt gevonden, dan moet het end-of-line-karakter aan het einde van de huidige ingelezen regel verwijderd worden. Het end-of-line-karakter wordt dus niet afgedrukt. Merk op dat na \lstinline|\nobreak| altijd een spatie of een end-of-line-karakter moet volgen anders is het commando \lstinline|\nobreak| niet te detecteren.
 \end{itemize}
 
 De aangepaste tekst moet naar een bestand geschreven worden. Eventuele foutmeldingen moeten naar het scherm worden geschreven. Ga ervan uit dat een ingelezen regel uit niet meer dan 100 karakters bestaat.
@@ -3294,7 +3317,7 @@ pstr = str; /* pstr points to first address of str */
 str = pstr; /* ILLEGAL: str cannot be assigned! */
 \end{lstlisting}
 
-Een speciaal geval van een pointer-adres is de zogenoemde NULL-pointer. De inhoud van de pointer is dan 0. In principe is er geen verschil met elke andere inhoud van de pointer, maar een NULL-pointer wordt gebruikt om aan te geven dat een pointer nergens naartoe wijst.
+Een speciaal geval van een pointer-adres is de zogenoemde NULL-pointer. De inhoud van de pointer is dan~0 (alle bits van de pointer-variabele zijn~0). In principe is er geen verschil met elke andere inhoud van de pointer, maar een NULL-pointer wordt gebruikt om aan te geven dat een pointer nergens naartoe wijst.
 
 \begin{lstlisting}
 /* #define NULL ((void*)0) */
@@ -3326,7 +3349,7 @@ char *p = NULL;
 
 \section{Command line argumenten en bestandsafhandeling in C}
 \label{sec:argcargv}
-In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In dit document doen we dat in een zogenoemde DOS-box onder Windows.
+In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In deze bijlage doen we dat in een zogenoemde DOS-box onder Windows.
 
 \subsection{Command line argumenten}
 In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline[language=,literate=]|myprog.exe| gestart wordt met de argumenten \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. Het programma drukt eenvoudigweg alle argumenten op het beeldscherm af. Te zien is dat ook de programmanaam als argument wordt meegegeven.
@@ -3417,7 +3440,7 @@ Het programma \lstinline[language=,literate=]|myprog.exe| is te zien in listing~
 \subsection{Bestandsafhandeling in C}
 In C is het mogelijk om met bestanden op de harde schijf (of USB-stick of SD-card) te werken. We spreken dan over File I/O.
 
-In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-adres terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
+In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-pointer terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
 
 \begin{figure}[H]
 \begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
@@ -3442,7 +3465,7 @@ int main() {
 \end{lstlisting}
 \end{figure}
 
-Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt weer gebruik gemaakt van een \lstinline|FILE|-pointer, in dit geval de pointer \lstinline|infile|.  Het genoemde bestand wordt weer geopend met de functie \lstinline|fopen| maar ditmaal met als tweede argument \lstinline|"r"| wat staat voor lezen uit een bestand. Mocht om \'e\'en of andere reden het bestand niet geopend kunnen worden, dan geeft \lstinline|fopen| een \lstinline|null|-adres terug. Hier testen we op in regel~11.
+Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt weer gebruik gemaakt van een \lstinline|FILE|-pointer, in dit geval de pointer \lstinline|infile|.  Het genoemde bestand wordt weer geopend met de functie \lstinline|fopen| maar ditmaal met als tweede argument \lstinline|"r"| wat staat voor lezen uit een bestand. Mocht om \'e\'en of andere reden het bestand niet geopend kunnen worden, dan geeft \lstinline|fopen| een \lstinline|null|-pointer terug. Hier testen we op in regel~11.
 
 In de regels 14 t/m 16 worden de karakters \'e\'en voor \'e\'en ingelezen en afgedrukt op het beeldscherm. We zien hier een typische C-\lstinline|while|-constructie.  Er wordt een karakter ingelezen door middel van de functie \lstinline|fgetc| en toegekend aan de variabele \lstinline|ch|. Tegelijkertijd wordt getest of het ingelezen karakter gelijk is aan \lstinline|EOF| wat staat voor end-of-file. Zolang dat niet het geval is wordt het karakter afgedrukt met de functie \lstinline|printf|.
 
