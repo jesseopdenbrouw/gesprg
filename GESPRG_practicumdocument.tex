@@ -14,7 +14,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.999}
+\def\version{1.9999$\alpha$}
 
 \usepackage{parskip}
 \usepackage[dutch]{babel}
@@ -571,10 +571,11 @@ splittopskip = \topskip,%
 
 
 \tableofcontents
-\vfill
-Dit document is gemaakt door F. Theinert, W. Muhammad, B. Kuiper, M. Schrauwen, H. Broeders en J. op den Brouw.
-Opmerkingen en suggesties kunnen worden gemaild naar \href{mailto:J.E.J.opdenBrouw@hhs.nl}{J.E.J.opdenBrouw@hhs.nl}
 
+%%%\hspace*{0pt}\vfill
+%%%Dit document is gemaakt door F. Theinert, W. Muhammad, B. Kuiper, M. Schrauwen, H. Broeders en J. op den Brouw.
+%%%Opmerkingen en suggesties kunnen worden gemaild naar \href{mailto:J.E.J.opdenBrouw@hhs.nl}{J.E.J.opdenBrouw@hhs.nl}
+%%%
 
 
 \section*{Aanbevolen werkwijze}
@@ -2619,7 +2620,7 @@ Voor het vervangen van een woord in een string is in C geen functie beschikbaar.
 int stringreplace(char *str, char *what, char *with)
 \end{lstlisting}
 
-die in de string \lstinline|str| zoekt naar het woord \lstinline|what| en vervangt door het woord \lstinline|with|. Schrijf een hoofdprogramma om de functie te testen. Noot: let erop dat de lengte van \lstinline|with| groter kan zijn dan de lengte van \lstinline|what|. Zorg ervoor dat de ruimte van de string \lstinline|str| groot genoeg is.
+die in de string \lstinline|str| zoekt naar het woord \lstinline|what| en vervangt door het woord \lstinline|with|. De return-waarde is het aantal vervangingen en kan natuurlijk ook 0 zijn. Schrijf een hoofdprogramma om de functie te testen. Noot: let erop dat de lengte van \lstinline|with| groter kan zijn dan de lengte van \lstinline|what|. Zorg ervoor dat de ruimte van de string \lstinline|str| groot genoeg is.
 
 \subsection{Onbeperkt}
 Het inlezen van een regel tekst van het toetsenbord is niet echt lastig. Het wordt pas problematisch als er meer tekens worden ingelezen dan er in de string kunnen worden ondergebracht. Meestal declareren we een string met 100 karakters en hopen maar dat er niet meer karakters worden ingevoerd.
@@ -3596,5 +3597,92 @@ int main(int argc, char *argv[]) {
 }
 \end{lstlisting}
 \end{figure}
+
+\section{Moeilijkheidsgraad}
+In de onderstaande tabel is de moeilijkheidsgraad te vinden. A = eenvoudig, B = iets moeilijker, C = lastig, D = moeilijk, E = heel moeilijk.
+ 
+\begin{multicols}{4}
+2.2 B\\
+2.3 A\\
+2.4 A\\
+2.5 C\\
+2.6 A\\
+2.7 A\\
+2.8 B\\
+2.9 D\\
+2.10 D\\
+2.11 D\\
+2.12 B\\
+2.13 C\\
+2.14 C\\
+2.15 D
+\end{multicols}
+
+\begin{multicols}{4}
+3.2 A\\
+3.3 A\\
+3.4 A\\
+3.5 B\\
+3.6 B\\
+3.7 D\\
+3.8 C\\
+3.9 A\\
+3.10 B\\
+3.11 B\\
+3.12 A\\
+3.13 D
+\end{multicols}
+
+\begin{multicols}{4}
+4.2 B\\
+4.3 B\\
+4.4 A\\
+4.5 B\\
+4.6 A\\
+4.7 A\\
+4.8 A\\
+4.9 B\\
+4.10 C\\
+4.11 C\\
+4.12 C\\
+4.13 B\\
+4.14 C
+\end{multicols}
+
+\begin{multicols}{4}
+5.2 A\\
+5.3 A\\
+5.4 B\\
+5.5 C\\
+5.6 A\\
+5.7 C\\
+5.8 D\\
+5.9 A\\
+5.10 B\\
+5.11 D\\
+5.12 B\\
+5.13 D\\
+5.14 D\\
+5.15 C\\
+5.16 B\\
+5.17 C\\
+5.18 D\\
+5.19 E\\
+5.20 D\\
+\end{multicols}
+
+\begin{multicols}{4}
+6.2 A\\
+6.3 C\\
+6.4 D\\
+6.5 C\\
+6.6 B\\
+6.7 C\\
+6.8 D\\
+6.9 C\\
+6.10 B\\
+6.11 A\\
+6.12 D
+\end{multicols}
 
 \end{document}
