@@ -3445,7 +3445,7 @@ In C is het mogelijk om met bestanden op de harde schijf (of USB-stick of SD-car
 
 In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-pointer terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 \begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
 #include <stdio.h>
 #include <stdlib.h>
@@ -3472,7 +3472,7 @@ Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt w
 
 In de regels 14 t/m 16 worden de karakters \'e\'en voor \'e\'en ingelezen en afgedrukt op het beeldscherm. We zien hier een typische C-\lstinline|while|-constructie.  Er wordt een karakter ingelezen door middel van de functie \lstinline|fgetc| en toegekend aan de variabele \lstinline|ch|. Tegelijkertijd wordt getest of het ingelezen karakter gelijk is aan \lstinline|EOF| wat staat voor end-of-file. Zolang dat niet het geval is wordt het karakter afgedrukt met de functie \lstinline|printf|.
 
-\begin{figure}[!t]
+\begin{figure}[!ht]
 \begin{lstlisting}[caption=Voorbeeld lezen uit een bestand.,label=cod:readfile]
 #include <stdio.h>
 #include <stdlib.h>
@@ -3518,7 +3518,7 @@ We ronden het programma af door het leesbestand en schrijfbestand af te sluiten.
 \end{figure}
 
 \subsection{Openen van een DOS-box op Windows}
-Een DOS-box kan je openen via de Start-knop (in het voorbeeld onder Windows 10). Klik op Start en vul in het kader de tekst \lstinline[language=,literate=]|cmd.exe| in. Druk op de enter-toets en een DOS-box wordt geopend. Zie figuur~\ref{fig:cmdexe}.
+Een DOS-box kan je openen via de Search-box (in het voorbeeld onder Windows 10). Klik op de Search-box en vul in het kader de tekst \lstinline[language=,literate=]|cmd.exe| in. Druk op de enter-toets en een DOS-box wordt geopend. Zie figuur~\ref{fig:cmdexe}.
 
 \begin{figure}[!ht]
 	\centering
@@ -3542,7 +3542,7 @@ Daarna kan je naar je map navigeren, bijvoorbeeld:
 \lstinline|cd \PROJECTS\CodeBlocks\filecopy\bin\Debug|
 
 \begin{figure}[!p]
-\begin{lstlisting}[caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
+\begin{lstlisting}[numbers=left,caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
