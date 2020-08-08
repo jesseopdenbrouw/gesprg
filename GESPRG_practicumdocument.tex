@@ -14,8 +14,10 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.9999$\gamma$}
+\def\version{1.9999$\delta$}
 
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
 \usepackage{parskip}
 \usepackage[dutch]{babel}
 \usepackage{float}
@@ -573,8 +575,8 @@ splittopskip = \topskip,%
 \tableofcontents
 
 \vfill
-Dit document is gemaakt door F. Theinert, W. Muhammad, B. Kuiper, M. Schrauwen, H. Broeders en J. op den Brouw.
-Opmerkingen en suggesties kunnen worden gemaild naar \href{mailto:J.E.J.opdenBrouw@hhs.nl}{J.E.J.opdenBrouw@hhs.nl}
+Dit document is gemaakt door J.F. Theinert, W. Muhammad, B. Kuiper, M.J.A.J. Schrauwen, J.Z.M. Broeders en J.E.J. op den Brouw.
+Opmerkingen, suggesties en bugs kunnen worden gemaild naar \href{mailto:J.E.J.opdenBrouw@hhs.nl}{J.E.J.opdenBrouw@hhs.nl}
 
 
 
@@ -686,7 +688,7 @@ Het  zogenoemde \textsl{format argument} \lstinline|"%d"| geeft \lstinline|scanf
 
 Schrijf nu zelf een programma dat twee integers inleest (vanaf het toetsenbord) en de som van deze integers afdrukt.
 
-Noot: er kleven nadelen van het inlezen van getallen met \lstinline|scanf|. Zie bijlage~\ref{sec:scanf}.
+
 \section{Toekennings- en herhalingsopdrachten (\texttt{for} loop)}
 
 \subsection{Inleiding}
@@ -731,6 +733,21 @@ int main(void) {
 
 \letop
 
+\subsection{Kwadraten en derde machten}
+Schrijf een programma die de kwadraten en derde machten van 1 t/m 10 afdrukt. Gebruik een \lstinline|for|-statement voor het opzetten van de herhaling.
+
+\subsection{Deelbaar door 9}
+Schrijf een programma dat alle getallen tussen 100 en 200 afdrukt, die deelbaar zijn door 9. Gebruik een \lstinline|for|-statement voor het opzetten van de herhaling.
+
+\subsection{Harmonische reeks}
+Schrijf een programma dat de reciproken van 1 t/m 100 bij elkaar optelt. Dat is dus:
+
+\begin{equation*}
+\text{som} = \dfrac{1}{1}+\dfrac{1}{2}+\dfrac{1}{3}+\dfrac{1}{4} + \cdots + \dfrac{1}{100}
+\end{equation*}
+
+Gebruik een \lstinline|for|-statement voor het opzetten van de herhaling.
+ 
 \subsection{Inwendig en uitwendig vermogen}
 Een spanningsbron kan worden voorgesteld door een ideale spanningsbron met de spanning $U_b$ en een inwendige weerstand $R_i$. Aan deze bron wordt een uitwendige weerstand $R_u$ geplaatst zodat er een stroom $I_b$ gaat vloeien. Op het moment dat er een stroom vloeit, verbruiken de bron (met de inwendige weerstand) en de uitwendige weerstand vermogen.
 
@@ -895,7 +912,7 @@ h(t) &= v_0\cdot \sin(\alpha)\cdot t - \dfrac{1}{2}\cdot g\cdot t^2 & \text{[m]}
 s(t) &= v_0\cdot \cos(\alpha)\cdot t & \text{[m]} 
 \end{align*}
 
-Hierbij is $g$ de gravitatieversnelling, die is $9,81$ [m⁄s\textsuperscript{2}]. Ontwerp een programma dat de gebruiker om de hoek $\alpha$ (in graden, $0^\circ \leq \alpha \leq 90^\circ$) en de beginsnelheid $v_0$ (in km/h, $v_0 > 0$) vraagt en voor de eerste 10 (gehele) seconden de hoogte en de afgelegde weg afdrukt.
+Hierbij $h(t)$ de hoogte, $s(t)$ de afgelegde weg ten opzichte van de grond en is $g$ de gravitatieversnelling, die is $9,81$ [m⁄s\textsuperscript{2}]. Ontwerp een programma dat de gebruiker om de hoek $\alpha$ (in graden, $0^\circ \leq \alpha \leq 90^\circ$) en de beginsnelheid $v_0$ (in km/h, $v_0 > 0$) vraagt en voor de eerste 10 (gehele) seconden de hoogte en de afgelegde weg afdrukt.
 
 Zorg ervoor dat het programma goed omgaat met de invoer $\alpha < 0^\circ$ en $\alpha > 90^\circ$ en negatieve waarde voor $v_0$ door gebruik te maken van een \lstinline|do while| loop.
 
@@ -1067,6 +1084,50 @@ tijd spanning
 
 Merk op dat, naar mate de tijd toeneemt, de uitgangsspanning steeds dichter bij 10 V komt, maar nooit helemaal 10 V zal worden.
 
+\subsection{Stroom door een diode}
+Een \textsl{diode} is een elektronische component die vaak gebruikt wordt, bijvoorbeeld in gelijkrichtschakelingen. De relatie tussen de spanning \textsl{over} en de stroom \textsl{door} de diode is gegeven met de formule van Shockley en geldt voor een ideale diode:
+
+\begin{equation}
+I_{diode} = I_s\cdot(\mathrm{e}^{\frac{U_{diode}}{U_T}}-1)
+\end{equation}
+
+Hierin is $I_s$ de donkerstroom (typisch \SI{1e-9}{\milli\ampere}) en $U_T$ de thermische spanning (typisch \SI{25}{\milli\volt}).
+
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[background rectangle/.style={fill=yellow!30}, show background rectangle]
+	%\sansmath
+	\begin{axis}[width=8cm,height=5cm,
+		xlabel=$U_D$,
+		ylabel=$I_D$,
+		axis x line*=bottom,
+		axis y line*=left,
+        xmin=0, xmax=1.05,
+        ymin=0, ymax=26,
+        restrict y to domain=0:26,
+        % enlargelimits={abs=10pt},
+        x tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=1,
+	        use comma,
+    	    1000 sep={},
+            /tikz/.cd,
+        },
+		font=\small
+	]
+	% Draw diode curve, diode current is in mA
+	\addplot [domain=0:1.05,samples=201,blue,thick] {1e-9*(exp(x/(1.0*0.02569257028945))-1)};
+	\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+We zien dat de stroom nagenoeg 0 is bij spanningen kleiner dan \SI{0.4}{\volt} en erg groot is bij spanningen groter dan \SI{0.6}{\volt}. Daartussen stijgt de stroom zeer snel, en dat is het gebied dat onderzocht moet worden.
+
+Schrijf een programma dat de stroom door de diode berekent, tussen de spanningen \SI{0.4}{\volt} en \SI{0.6}{\volt} met stappen van \SI{0.01}{\volt}.
+
 \subsection{Booglengte van één periode van een sinus}
 We willen graag de booglengte weten van één periode van een sinus. We gaan uit van de functie $f(x) = \sin x$. Eén periode van de sinus is getekend in de onderstaande figuur.
 
@@ -1165,6 +1226,16 @@ int main(void){
 \end{lstlisting}
 
 \letop
+
+\subsection{Naam van de maand afdrukken}
+Ontwerp een programma dat de gebruiker vraagt om positieve gehele getallen tussen 1 en 12 (inclusief) in te voeren en de bijbehorende naam van de maand af te drukken. Dit programma moet net zo lang getallen inlezen totdat het getal 0 wordt ingevoerd. Dan moet het programma stoppen. Bij invoeren van een te groot of te klein getal moet \lstinline|"onbekende maand"| afgedrukt worden. 
+ 
+\subsection{Grootste getal}
+Ontwerp een programma dat drie gehele getallen inleest het het grootste van de drie getallen afdrukt.
+ 
+\subsection{Verandering van ingevoerde getallen}
+Ontwerp een programma dat aangeeft of een ingevoerd geheel getal \textsl{veranderd} is ten opzichte van het vorige ingevoerde getal. Let op: het eerste ingevoerde getal heeft geen voorganger dus kan niet bepaald worden of het veranderd is. Het getal 0 zorgt ervoor dat het programma stopt.
+
 
 \subsection{Even en oneven}
 Ontwerp een programma dat de gebruiker vraagt om positieve gehele getallen in te voeren. Dit programma moet net zo lang getallen inlezen totdat het getal 0 wordt ingevoerd. Hierna moet het programma afdrukken hoeveel even en hoeveel oneven getallen door de gebruiker zijn ingevoerd. Als de gebruiker negatieve getallen invoert dan moeten die niet worden meegeteld. Bedenk goed met welke invoerreeksen je dit programma moet testen om de correcte werking aan te tonen. Laat de invoerreeksen die je hebt gebruikt ook aan je practicumdocent zien.
@@ -2193,7 +2264,7 @@ Ontwerp een programma dat aan de gebruiker een vijftal gehele getallen vraag en 
 
 \begin{itemize}
 \item Als eerste moet er een functie worden geschreven, genaamd \lstinline[literate=]|max2|, die het maximum teruggeeft van twee gehele getallen. De getallen moeten als argumenten aan de functie worden meegegeven.
-\item Vervolgens moet er een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen gehele getallen worden ingelezen: letters en leestekens moeten worden genegeerd. Zie eventueel bijlage~\ref{sec:scanf}.
+\item Vervolgens moet er een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen gehele getallen worden ingelezen: letters en leestekens moeten worden genegeerd.
 \item Natuurlijk kan er een functie worden geschreven die in één keer het maximum van vijf getallen bepaalt maar dat is niet nodig. Je kan het maximum van drie getallen namelijk óók bepalen met behulp van de \lstinline[literate=]|max2|-functie: één van de argumenten is dan het maximum van twee getallen! De \lstinline[literate=]|max2|-functie wordt dus gebruikt als argument in een (andere) \lstinline[literate=]|max2|-functie. Ontwerp een \lstinline[literate=]|max5|-functie door alleen maar \lstinline[literate=]|max2|-functies te gebruiken.
 \end{itemize}
 
@@ -2202,7 +2273,7 @@ Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens he
 \subsection{Gemiddelde}
 Schrijf een programma dat het gemiddelde van vijf getallen uitrekent.
 
-Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd.  Zie eventueel bijlage~\ref{sec:scanf}.
+Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd.
 
 Er moet een functie \lstinline|gemiddelde| worden geschreven die het gemiddelde van de vijf getallen uitrekent en teruggeeft. Uiteraard moeten de vijf ingevoerde getallen als argumenten worden opgegeven.
 
@@ -2224,7 +2295,7 @@ Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens he
 %%%
 %%%Schrijf een programma dat de getallen $a$ en $b$, beide geheel een groter dan nul, inleest en de ggd berekent en afdrukt met behulp van de bovenstaande recursieve identiteit.
 %%%
-%%%Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd. Zie eventueel bijlage~\ref{sec:scanf}.
+%%%Er moet een functie \lstinline|leesGetal| worden geschreven die een geheel getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd.
 %%%
 %%%Test het programma met:
 %%%
@@ -2278,7 +2349,7 @@ Hier staat het volgende:
 \item Als je dit oneindig vaak doet, dan heb je de waarde van de wortel exact bepaald. Dat staat in de laatste formule.
 \end{itemize}
 
-Schrijf een programma dat de wortel van een getal groter dan of gelijk aan nul uitrekent. De middelste formule moet als functie worden geïmplementeerd. Er moet een functie \lstinline|leesGetal| worden geschreven die het getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd. Zie eventueel bijlage~\ref{sec:scanf}.
+Schrijf een programma dat de wortel van een getal groter dan of gelijk aan nul uitrekent. De middelste formule moet als functie worden geïmplementeerd. Er moet een functie \lstinline|leesGetal| worden geschreven die het getal inleest (netjes eerst tekst afdrukken dat een getal moet worden opgegeven), en dit ingelezen getal teruggeeft. Er mogen alleen getallen worden ingelezen: letters en leestekens moeten worden genegeerd.
 
 Verzin zelf meerdere testen. Zorg dat je deze testen bij de hand hebt tijdens het nakijken.
 
@@ -2384,7 +2455,7 @@ Schrijf een functie \lstinline|int aantal_delers(int getal)| die van het opgegev
 \label{sec:inleidingpointers}
 In de les heb je het één en ander geleerd over pointers en array’s. Een pointer is een variabele die als inhoud een adres bevat. Dit adres is dan het adres waar een andere variabele ligt opgeslagen. Zodoende wijst de pointer dus naar de variabele.
 
-Een array is een lijst van variabelen van het zelfde type. Je kan een array indexeren. Dat houdt in dat je een \textsl{element} uit de lijst kan gebruiken in je bewerkingen. Hiervoor gebruik je blokhaken. Een korte introductie over array's en pointers is te vinden in bijlage~\ref{sec:arypoin}.
+%Een array is een lijst van variabelen van het zelfde type. Je kan een array indexeren. Dat houdt in dat je een \textsl{element} uit de lijst kan gebruiken in je bewerkingen. Hiervoor gebruik je blokhaken. Een korte introductie over array's en pointers is te vinden in bijlage~\ref{sec:arypoin}.
 
 Hieronder is een programma dat een aantal waarden inleest in een array en vervolgens het gemiddelde van deze waarden afdrukt (het is in dit geval eigenlijk niet nodig om de getallen in en array op te slaan). Maak een project aan en plaats daarin de onderstaande code. Laat zien dat het werkt.
 
@@ -2463,7 +2534,7 @@ NB: Dit algoritme wordt \textsl{bubble sort} genoemd, het is een leuke programme
 Verzin zelf testdata. Zorg dat je deze testdata bij de hand hebt tijdens het nakijken.
 
 \subsection{Zoeken}
-Schrijf een programma dat een string inleest en bepaalt of dit woord in een gesorteerde lijst met 127 woorden voorkomt. Hiervoor moet je het ingevoerde woord vergelijken met de woorden in de lijst. Merk op dat je met maximaal zeven vergelijk-opdrachten kan bepalen of het ingevoerde woord in de gesorteerde lijst voorkomt of niet. Als je het woord wat je zoekt namelijk vergelijkt met het woord met index 63 in de lijst dan kun je het meteen vinden (als het woord dat je zoekt gelijk is aan het woord dat op index 63 staat) of weet je of het woord gezocht moet worden in de lijst van index 0 t/m 62 (als het woord dat je zoekt kleiner is dan het woord dat op index 63 staat) of dat het woord gezocht moet worden in de lijst van index 64 t/m 126 (als het woord dat je zoekt groter is dan het woord dat op index 63 staat). Op deze manier halveer je steeds het deel van de lijst dat je nog moet doorzoeken. Na 7 keer halveren heb je de gehele lijst van $127 = 2^7 – 1$ woorden doorzocht. Je programma mag dus niet meer dan zeven vergelijk-opdrachten uitvoeren. Een programma waarin een lijst met 127 gesorteerde meisjesnamen staat kun je vinden op: \url{http://bd.eduweb.hhs.nl/gesprg/progs/namenlijst.c}. 
+Schrijf een programma dat een string inleest en bepaalt of dit woord in een gesorteerde lijst met 127 woorden voorkomt. Hiervoor moet je het ingevoerde woord vergelijken met de woorden in de lijst. Merk op dat je met maximaal zeven vergelijk-opdrachten kan bepalen of het ingevoerde woord in de gesorteerde lijst voorkomt of niet. Als je het woord wat je zoekt namelijk vergelijkt met het woord met index 63 in de lijst dan kun je het meteen vinden (als het woord dat je zoekt gelijk is aan het woord dat op index 63 staat) of weet je of het woord gezocht moet worden in de lijst van index 0 t/m 62 (als het woord dat je zoekt kleiner is dan het woord dat op index 63 staat) of dat het woord gezocht moet worden in de lijst van index 64 t/m 126 (als het woord dat je zoekt groter is dan het woord dat op index 63 staat). Op deze manier halveer je steeds het deel van de lijst dat je nog moet doorzoeken. Na 7 keer halveren heb je de gehele lijst van $127 = 2^7 – 1$ woorden doorzocht. Je programma mag dus niet meer dan zeven vergelijk-opdrachten uitvoeren. Een programma waarin een lijst met 127 gesorteerde meisjesnamen staat kun je vinden op BlackBoard. 
 
 Verzin zelf testdata. Zorg dat je deze testdata bij de hand hebt tijdens het nakijken.
 
@@ -2790,7 +2861,7 @@ Met argumenten op de command-line wordt het volgende bedoeld:
 
 Het is dus \textbf{niet} de bedoeling dat na het starten van het programma de gebruiker om twee bestandsnamen wordt gevraagd of dat de bestandsnamen hard gecodeerd zijn in het programma. Verder moet getest worden of de bestanden wel geopend kunnen worden. Zo niet, dan moet dat aan de gebruiker worden medegedeeld. Als een gebruiker je programma start met teveel of te weinig argumenten, dan moet je dat aan de gebruiker mededelen. Ga er niet vanuit dat de gebruiker de inhoud van de bestanden zo formatteert dat het direct in je programma werkt. Je moet dus de ingelezen data wel controleren of het voldoet aan het formaat dat je kan verwerken (denk bijvoorbeeld aan letters i.p.v. getallen). Maak je programma flexibel. Dus niet voorschrijven dat je precies 10 getallen moet invoeren (maar om het eenvoudig te houden: niet meer dan 1000) of dat een regel precies 20 karakters moet hebben. Bedenk ook wat er moet gebeuren als een invoerbestand leeg is.
 
-Zie bijlage~\ref{sec:argcargv} voor meer informatie en voorbeelden.
+%Zie bijlage~\ref{sec:argcargv} voor meer informatie en voorbeelden.
 
 
 \appendix
@@ -2798,10 +2869,10 @@ Zie bijlage~\ref{sec:argcargv} voor meer informatie en voorbeelden.
 \section{Installatie Code::Blocks}
 \label{sec:installcodeblocks}
 
-In deze bijlage zijn instructies te vinden voor het installeren en gebruiken van Code::Blocks 17.12. De instructies zijn als volgt:
+In deze bijlage zijn instructies te vinden voor het installeren en gebruiken van Code::Blocks 20.03. De instructies zijn als volgt:
 
 \begin{itemize}
-\item Download Code::Blocks van \url{http://sourceforge.net/projects/codeblocks/files/Binaries/17.12/Windows/codeblocks-17.12mingw-setup.exe} (let erop dat in de naam de term \texttt{mingw} staat)
+\item Download Code::Blocks van \url{https://sourceforge.net/projects/codeblocks/files/Binaries/20.03/Windows/codeblocks-20.03mingw-setup.exe/download} (let erop dat in de naam de term \texttt{mingw} staat)
 \item Installeer vervolgens Code::Blocks door de gedownloade executable te runnen. (Bij installatie continu op \texttt{next} drukken)
 \item Bij het opstarten van Code::Blocks wordt er gevraagd naar de compiler die gebruikt zal gaan worden. Als het goed is, is er al \'e\'en geselecteerd en hoef je alleen op \texttt{OK} te drukken.
 \item Nu kun je een project aanmaken en code gaan compileren en runnen:
@@ -2831,772 +2902,6 @@ int main(void)
 \end{enumerate}
 \end{itemize}
 
-\section{Inlezen van een getal met \texttt{scanf}}
-\label{sec:scanf}
-De functie \lstinline|scanf| is een veelzijdige functie voor het inlezen van variabelen. Zo kan je een getal, een letter of een string inlezen. Maar hoe weet \lstinline|scanf| nu wat er ingelezen moet worden? Dat geef je op met een \textsl{format string}. Een enkel geheel getal kan je inlezen met:
-
-\begin{lstlisting}
-scanf("%d", &getal);
-\end{lstlisting}
-
-De format string \lstinline|"%d"| vertelt \lstinline|scanf| dat een geheel getal moet worden ingelezen. Het is ook mogelijk om meerdere getallen in te lezen:
-
-\begin{lstlisting}
-scanf("%d %d %d", &getala, &getalb, &getalc);
-\end{lstlisting}
-
-Bij het invoeren moeten de getallen gescheiden worden door \'e\'en of meerdere spaties. Het aantal spaties maakt dus niet uit; deze worden overgeslagen. Als je in C programma een getal inleest met \lstinline|scanf| dan gebeuren er vreemde dingen als je in plaats van een getal letters intypt. Bijvoorbeeld:
-
-\begin{lstlisting}
-#include <stdio.h>
-
-int main(void) {
-    int getal = -12345;
-    printf("Geef een geheel getal: ");
-    scanf("%d", &getal);
-    printf("Het getal is %d.\n", getal);
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    getchar();
-    return 0;
-}
-\end{lstlisting}
-
-Als je dit programma uitvoert en als invoer het woord \lstinline|Hallo| intypt dan verschijnt de volgende uitvoer:
-
-\begin{lstlisting}[language=,literate=]
-Geef een geheel getal: Hallo
-Het getal is -12345.
-Druk op de Enter toets om dit window te sluiten.
-\end{lstlisting}
-
-Het blijkt dat de waarde van variabele \lstinline|getal| niet is veranderd. Het eerste teken dat \lstinline|scanf| tegenkomt is de \lstinline|H| en dat is geen cijfer, dus wordt er gestopt met inlezen van het toetsenbord. Het wordt echt problematisch als er een getal ingelezen moet worden dat aan een voorwaarde moet voldoen:
-
-\begin{lstlisting}
-int main(void) {
-    int getal = -12345;
-
-    do {
-        printf("Geef een geheel getal groter dan 0: ");
-        scanf("%d", &getal);
-    } while (getal < 1);
-
-    printf("Het getal is %d.\n", getal);
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    getchar();
-    return 0;
-}
-\end{lstlisting}
-
-\newpage
-De uitvoer is nu:
-
-\begin{lstlisting}[language=,literate=,basicstyle=\fontsize{8.775}{10}\ttfamily]
-Geef een geheel getal groter dan 0: Hallo
-Geef een geheel getal groter dan 0: Geef een geheel getal groter dan 0: Geef een
- geheel getal groter dan 0: Geef een geheel getal groter dan 0: Geef een geheel
-getal groter dan 0: Geef een geheel getal groter dan 0: Geef een geheel getal gr
-oter dan 0: Geef een geheel getal groter dan 0: Geef een geheel getal groter dan
- 0: Geef een geheel getal groter dan 0: Geef een geheel getal groter dan 0: Geef
- een geheel getal groter dan 0: Geef een geheel getal groter dan 0: Geef een geh
-eel getal groter dan 0: Geef een geheel getal groter dan 0: Geef een geheel geta
-(*\bfseries\textsl{\textrm{enzovoorts}}*)
-\end{lstlisting}
-
-Het programma gaat nu als een razende te werk en de enige manier om het te stoppen is het programma af te sluiten. Maar hoe komt dat nou?
-
-%\subsubsection*{Buffering}
-Als \lstinline|scanf| voor de eerste keer iets inleest dan zijn er nog geen karakters vanaf het toetsenbord ingevoerd. Daarom vraagt \lstinline|scanf| aan het operating system (Windows, Linux, OS-X) om een karakter. Het operating system weet dat er geen karakters beschikbaar zijn en gaat via interne routines karakters opvragen. Er wordt echter niet \'e\'en karakter opgevraagd maar een hele reeks die afgesloten moet worden met een <enter>-toets. Je moet als gebruiker dus je invoer altijd afsluiten met een <enter>-toets, ook als je via \lstinline|scanf| maar \'e\'en karakter inleest. De ingelezen karakters worden ergens in het geheugen opgeslagen. Dit wordt \textsl{buffering} genoemd en de geheugenruimte wordt \textsl{invoerbuffer} genoemd. Er zijn nu karakters beschikbaar en het eerste ingevoerde karakter wordt aan \lstinline|scanf| gegeven.
-
-Het eerste karakter is de letter \lstinline|H| en dat is geen cijfers. Dus stopt \lstinline|scanf| direct met het inlezen van karakters (die dus alleen cijfers mogen zijn). Het karakter \lstinline|H| blijft hierbij in de invoerbuffer staan. De \lstinline|H| wordt dus niet verwijderd.
-
-Omdat \lstinline|scanf| geen cijfers heeft kunnen inlezen, wordt de opgegeven variabele niet veranderd en blijft zijn originele waarde behouden. Daarom drukt het eerste programma in deze bijlage het getal $-12345$ af. Het tweede programma blijft in een \lstinline|do while|-lus steeds een getal inlezen als het getal kleiner is dan~$-1$. Aangezien \lstinline|scanf| geen cijfers inleest en de opgegeven variabele niet aanpast, blijft de waarde $-12345$ behouden en dat is kleiner dan $-1$. Dus wordt de lus nog een keer uitgevoerd. De \lstinline|H| staat nog steeds in de invoerbuffer en lukt het \lstinline|scanf| niet om een getal in te lezen.
-
-Dit kun je vrij eenvoudig voorkomen door de returnwaarde van de functie \lstinline|scanf| te testen. Deze functie geeft het aantal variabelen terug dat succesvol is geconverteerd en ingelezen (dat kan dus ook 0 zijn), anders geeft de functie de integer waarde \lstinline|EOF| terug. Je kan dat als volgt doen:
-
-\begin{lstlisting}
-#include <stdio.h>
-
-int main(void) {
-    int getal = -12345;
-    int ret;
-
-    printf("Geef een geheel getal groter dan 0: ");
-    ret = scanf("%d", &getal);
-
-    if (ret == 1) {
-        printf("Het getal is %d.\n", getal);
-    } else {
-        printf("Geen getal ingevoerd!\n");
-    }
-
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    getchar();
-    return 0;
-}
-\end{lstlisting}
-
-De uitvoer wordt dan:
-
-\begin{lstlisting}[language=,literate=]
-Geef een geheel getal groter dan 0: Hallo
-Geen getal ingevoerd!
-Druk op de Enter toets om dit window te sluiten.
-\end{lstlisting}
-
-Er is nog \'e\'en probleem. De karakters van \lstinline|Hallo| staan nog steeds in de invoerbuffer. Die zullen we er een voor een uit moeten halen. Dat kan met het onderstaande programma:
-
-\begin{lstlisting}
-#include <stdio.h>
-
-int main(void) {
-    int getal, ret;
-    do {
-        printf("Geef een geheel getal: ");
-        ret=scanf("%d", &getal);
-        if (ret == 0) {
-            printf("Dat was geen getal!\n");
-            printf("Maar het karakter %c.\n", getchar());
-        }
-        else if (ret == EOF) {
-            printf("Er is een fout opgetreden bij het lezen!\n");
-        }
-    } while (ret != 1);
-    printf("Het getal is %d.\n", getal);
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    getchar();
-    return 0;
-}
-
-\end{lstlisting}
-
-De functie \lstinline|getchar| leest \'e\'en karakter uit de invoerbuffer. Daarna proberen we \lstinline|scanf| opnieuw. Dat mislukt telkens als er een letter gevonden wordt. Als je nu \lstinline|Hallo| invoert, krijg je de volgende uitvoer:
-
-\begin{lstlisting}[language=,literate=]
-Geef een geheel getal: Hallo
-Dat was geen getal!
-Maar het karakter H.
-Geef een geheel getal: Dat was geen getal!
-Maar het karakter a.
-Geef een geheel getal: Dat was geen getal!
-Maar het karakter l.
-Geef een geheel getal: Dat was geen getal!
-Maar het karakter l.
-Geef een geheel getal: Dat was geen getal!
-Maar het karakter o.
-Geef een geheel getal:
-\end{lstlisting}
-
-Natuurlijk willen niet steeds dat bij elk karakter een melding op het scherm wordt afgedrukt. We kunnen een aantal \lstinline|printf|-regels verwijderen maar niet de regel waarin de gebruiker wordt gevraagd om een geheel getal in te voeren. Anders weet de gebruiker niet wat hij/zij moet doen. Helaas wordt deze regel herhaaldelijk afgedrukt. We zullen op een iets andere manier de karakters moeten inlezen.
-
-Gelukkig zorgt het operating system ervoor dat ook het end-of-line-karakter in de invoerbuffer terecht komt. We kunnen dus hierop testen. Hoe dat moet, is te zien in de onderstaande code:
-
-\begin{lstlisting}
-do { ch = getchar(); } while (ch != '\n' && ch != EOF);
-\end{lstlisting}
-
-We lezen een karakter van de invoerbuffer en dat doen we zolang dat karakter ongelijk is aan \lstinline|\n| (end-of-line-karakter) en ongelijk is aan \lstinline|EOF| (end-of-file).
-
-Omdat we vaker gebruik willen maken van het legen van de invoerbuffer plaatsen we de code een functie. We kunnen nu aan de gebruiker vragen om een getal in te voeren:
-
-\begin{lstlisting}
-#include <stdio.h>
-
-void purge_stdin(void) {
-    int ch;
-    do {
-        ch = getchar();
-    } while (ch != '\n' && ch != EOF);
-}
-
-int main(void) {
-    int getal, ret;
-    do {
-        printf("Geef een geheel getal: ");
-        ret=scanf("%d", &getal);
-        if (ret == 0) {
-            purge_stdin();
-        }
-    } while (ret != 1);
-    printf("Het getal is %d.\n", getal);
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    purge_stdin();
-    getchar();
-    return 0;
-}
-\end{lstlisting}
-
-Er is nog een andere manier om de invoerbuffer te legen. We kunnen de invoerbuffer legen met de functie \lstinline|fflush| (file flush):
-
-\begin{lstlisting}
-fflush(stdin);
-\end{lstlisting}
-
-Als parameter van \lstinline|fflush| wordt \lstinline|stdin| opgegeven. Dat staat voor \textsl{standard input} en daar wordt in de regel het toetsenbord mee bedoeld\footnote{Op de bekende operating systems is het mogelijk om de inhoud van bestanden door te geven aan de \textsl{standard input}. Het programma krijgt dan data uit een bestand i.p.v.\@ het toetsenbord. Dat wordt \textsl{redirection} genoemd.}. Daarnaast kennen we nog \lstinline|stdout| (\textsl{standard output}, het beeldscherm) en \lstinline|stderr| (\textsl{standard error}, meestal ook het beeldscherm).
- 
-\textbf{Deze manier werkt echter niet met alle C-compilers en operating systems}. Dat heeft te maken met de definitie van de functie \lstinline|fflush|. De functie \lstinline|fflush| is bedoeld om uitvoerbuffers te legen. Als de uitvoer naar het beeldscherm is, wordt de buffer naar het beeldscherm geschreven. Als de uitvoer naar een bestand is, wordt de buffer naar het bestand geschreven. De C-standaard schrijft echter alleen voor dat \textsl{flushen} van een uitvoerbuffer gedefinieerd is, niet van een invoerbuffer. Niet zo gek eigenlijk, want wat wordt er nou bedoeld met flushen van de invoerbuffer. Flushen van het toetsenbord is het nog te begrijpen maar flushen van een invoerbestand niet. Moeten we dan helemaal tot einde van het bestand flushen? Of alleen maar de bijbehorende buffer? Dat levert een onvoorspelbaar programma op want we weten immers niet hoeveel karakters in de buffer staan.
-
-Toch zijn er wel C-implementaties die het flushen van een invoerbuffer uitvoeren, bijvoorbeeld de GNU C-compiler op Linux en MinGW op Windows (zit o.a.\@ in Code::Blocks).
-
-Hieronder is de code te vinden van het flushen van de invoerbuffer van het toetsenbord m.b.v.\@ \lstinline|fflush|:
-
-\newpage
-\begin{lstlisting}
-/* Please note: might not works on all Operating Systems. */
-#include <stdio.h>
-
-int main(void) {
-    int getal, ret;
-    do {
-        printf("Geef een geheel getal: ");
-        ret=scanf("%d", &getal);
-        if (ret == 0) {
-            fflush(stdin);
-        }
-    } while (ret != 1);
-    printf("Het getal is %d.\n", getal);
-    printf("Druk op de Enter toets om dit window te sluiten.");
-    fflush(stdin);
-    getchar();
-    return 0;
-}
-\end{lstlisting}
-
-
-\section{Introductie array's en pointers}
-\label{sec:arypoin}
-Soms is het gebruik van elementaire datatypen niet handig bij het ontwerpen van een programma. We nemen als voorbeeld een programma dat vijf getallen inleest en het gemiddelde van deze getallen afdrukt. We gebruiken vijf integer variabelen voor de in te voeren getallen en een integer variabele voor het berekenen van het gemiddelde:
-
-\begin{lstlisting}
-#include <stdio.h>
-
-int main(void) {
-
-	int a, b, c, d, e;
-	printf("Geef getal: ");
-	scanf("%d", &a);
-	printf("Geef getal: ");
-	scanf("%d", &b);
-	printf("Geef getal: ");
-	scanf("%d", &c);
-	printf("Geef getal: ");
-	scanf("%d", &d);
-	printf("Geef getal: ");
-	scanf("%d", &e);
-
-	gem = (a+b+c+d+e)/5;
-
-	printf("Gemiddelde is: %d\n",gem);
-	return 0;
-}
-\end{lstlisting}
-
-We kunnen hierbij twee opmerkingen plaatsen. De code voor het inlezen van de vijf getallen lijkt sterk op elkaar. Het programma wordt onpraktisch als we het gemiddelde van 100 getallen willen berekenen.
-
-\subsection{Array's}
-We kunnen bij het ontwerpen van het programma gebruik maken van \textsl{array's}. Een array wordt een \textsl{samengesteld datatype} genoemd. Hieronder volgt de declaratie van een array van twaalf integers:
-
-\begin{lstlisting}
-int a[12];
-\end{lstlisting}
-
-Hierin is \verb|a| de naam van de array en 12 het aantal \textsl{elementen} van de array. Dit wordt de lengte van de array genoemd. De inhoud van de afzonderlijke elementen is niet gedefinieerd (behalve als de array globaal wordt gedeclareerd, dan is de inhoud 0).  Een array is uit te beelden als een rechthoek met hokjes zoals hieronder is te zien.
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\foreach \y [count=\x from 0] in {9,5,13,19,12,8,7,4,21,2,6,3}{ 
-    \node[memloc] at (\x,0){}; \node at (\x,0.75) {\small \x}; }
-
-\node at (-1.0,0) [left] {a:};
-\draw[decorate,decoration={brace,mirror},thick] (-.5,-.7) -- node[below,yshift=-2mm]{\rmfamily array length} (11.5,-.7);
-\end{tikzpicture}
-\end{figure}
-
-Te zien is dat de array begint bij element 0 en eindigt bij element 11. In C begint een array altijd bij element~0. Het laatste of hoogste element is \'e\'en minder dan de lengte van de array. In het voorbeeld is het laatste element dus 11.
-
-%\begin{figure}[H]
-%\centering
-%\begin{tikzpicture}[arraypic]
-%\foreach \y [count=\x from 0] in {9,5,13,19,12,8,7,4,21,2,6,3}{ 
-%    \node[memloc] at (\x,0){\y}; \node at (\x,0.75) {\small \x}; }
-%
-%\node at (-1.0,0) [left] {a:};
-%
-%\draw[decorate,decoration={brace,mirror},thick] (-.5,-.7) -- node[below,yshift=-2mm]{\rmfamily array length} (11.5,-.7);
-%\end{tikzpicture}
-%\end{figure}
-
-We kunnen de inhoud van een array tijdens runtime specificeren met een zogenoemde \textsl{array initializers}. Bij een volledige lijst met initializers mag de lengte weggelaten worden. Een voorbeeld:
-
-\begin{lstlisting}
-int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
-\end{lstlisting}
-
-De lengte van de array komt overeen met het aantal initializers. Om een array met nullen te initialiseren, kunnen we gebruik maken van een gedeeltelijke initialisatie:
-
-\begin{lstlisting}
-int a[12] = { 0 };
-\end{lstlisting}
-
-Element 0 wordt expliciet met 0 ge\"initialiseerd. De overige elementen worden, conform de C-standaard, altijd met 0 ge\"initialiseerd, ook als de eerste initializer ongelijk aan 0 is.
-
-Om een element uit een array te gebruiken, moeten de naam van de array en het elementnummer (tussen blokhaken) worden opgegeven. Het onderstaande voorbeeld kopieert element 3 uit de array in variabele \lstinline|getal|:
-
-\begin{lstlisting}
-int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
-int getal:
-
-getal = a[3];
-\end{lstlisting}
-
-In de onderstaande figuur is de werking van het programma uitgebeeld.
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\foreach \y [count=\x from 0] in {9,5,13,19,12,8,7,4,21,2,6,3}{ 
-    \node[memloc] at (\x,0){\y};  }
-
-\node at (-1.0,0) [left] {a:};
-
-\draw[-latex,thick] (3,1.2) --  node[above,yshift=2mm]{a[3]} (3,.6);
-\draw[-latex,thick,] { (3,-0.35)  .. controls (3,-1) and (2,-1.5) .. (0.5,-1.5) };
-\draw[thick] (3,0) circle (0.35cm);
-\node[memloc] at (0,-1.5) {19};
-\node at (-1.0,-1.5) [left] {getal:};
-\end{tikzpicture}
-\end{figure}
-
-Met behulp van een array is het makkelijk om de som te bepalen van een groot aantal getallen:
-
-\begin{lstlisting}
-...
-int a[] = {9,5,13,19,12,8,7,4,21,2,6,3};
-int som = 0:
-...
-for (i=0; i<12; i=i+1) {
-	som = som + a[i];
-}
-...
-\end{lstlisting}
-
-De lengte (of grootte) van een array is te bepalen met behulp van de keyword \lstinline|sizeof|. Let daarbij op dat \lstinline|sizeof| de grootte in \textsl{bytes} berekend. Om het aantal elementen van de array te bepalen, moet de grootte in bytes nog worden gedeeld door de grootte van \'e\'en element:
-
-\begin{lstlisting}
-array_size = sizeof a / sizeof a[0];
-\end{lstlisting}
-
-\subsection{Strings}
-Een string in C is niets anders dan een array van \lstinline|char|'s, afgesloten met een zogenoemde \textsl{null-byte} (\lstinline|\0|). Zo maakt de onderstaande declaratie de array \lstinline|str| aan met een grootte van 6.
-
-\begin{lstlisting}
-char str[] = "Hallo";
-\end{lstlisting}
-
-Dit is equivalent met:
-
-\begin{lstlisting}
-char str[] = { 'H', 'a', 'l', 'l', 'o', '\0'};
-\end{lstlisting}
-
-Een uitbeelding van de string is hieronder te zien:
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\foreach \y [count=\x from 0] in {H,a,l,l,o,\textbackslash0}{\node[memloc] at (\x,-2){\strut\y};}
-\node at (-1.0,-2) [left] {str:};
-\end{tikzpicture}
-\end{figure}
-
-Let erop dat de array dus \'e\'en element groter is dan het aantal karakters in de array. Dit is een veel gemaakte fout bij het afhandelen van strings (een zogenoemde \textsl{off-by-one error}). Omdat het null-byte het einde van de string aangeeft, kunnen we er gebruik van maken, bijvoorbeeld voor het bepalen van de lengte van de string. Hieronder zie je een mogelijke implementatie van de functie \lstinline|strlen|:
-
-\begin{lstlisting}
-int stringlength(char str[]) {   /* use another function name to prevent */
-                                 /* clash with strlen */
-	int count = 0;
-
-    while (str[count] != '\0') {
-        count++;
-    }
-
-	return count;
-}
-\end{lstlisting}
-
-%%\begin{lstlisting}
-%%int strlen(char s[]) {
-%%    int count = 0;
-%%
-%%    while (s[count] != '\0') {
-%%        count++;
-%%    }
-%%    return count;
-%%}
-%%\end{lstlisting}
-
-\subsection{Pointers}
-Een \textsl{pointer} is een variabele waarvan de inhoud het \textsl{adres} is van een (andere) variabele in het computergeheugen. Hieronder is te zien dat de pointer \lstinline|pa| wijst naar de variabele \lstinline|a|.
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\node at (-3.5,0) [left] {pa:};
-\node[memloc] at (-2.5,0) {};
-\draw[-latex,thick,shorten >= 1pt] (-2.5,0) -- (-0.5,0.0);
-\fill (-2.5,0) circle (2pt);
-\node[memloc] at (0,0) {3};
-\node at (1,0) {a:};
-%\draw (0,0) pic {memlocnull};
-\end{tikzpicture}
-\end{figure}
-
-We kunnen dit als volgt in code programmeren:
-
-\begin{lstlisting}
-int a;     /* an integer */
-int *pa;   /* a pointer to an integer */
-
-a = 3;     /* set integer a to 3 */
-pa = &a;   /* let pa point to a */
-\end{lstlisting}
-
-We kunnen nu door middel van de pointer een variabele aanpassen:
-
-\begin{lstlisting}
-a = a + 1;     /* increment integer variabele a with 1 */
-*pa = *pa + 1; /* increment variabele through pointer */
-a = *pa + 1;   /* also works */
-*pa = a + 1;   /* also works */
-\end{lstlisting}
-
-Array's en pointers hebben een sterke relatie. De \textsl{naam van een array} is een \textsl{synoniem} van een pointer naar het eerste element van een array:
-
-\begin{figure}[!ht]
-\begin{lstlisting}
-int a[12] = {9,5,13,19,12,8,7,4,21,2,6,3};
-int *pa;
-
-pa = a; /* of: pa = &a[0]; */
-\end{lstlisting}
-\end{figure}
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\foreach \y [count=\x from 0] in {9,5,13,19,12,8,7,4,21,2,6,3} { \node[memloc] at (\x,0) {\y}; }
-
-\node at (-1.0,0) [left] {a:};
-
-\node[memloc] at (0,2.5){};
-\draw[-latex,thick,shorten >= 1pt] (0,2.5) -- (0,0.5);
-\node at (-1.0,2.5) [left] {pa:};
-\fill (0,2.5) circle (2pt);
-\end{tikzpicture}
-\end{figure}
-
-Pointers kunnen worden aangepast. De naam van een array kan \textsl{niet} worden aangepast. We demonstreren dit aan de hand van twee strings in het computergeheugen. De pointer \lstinline|pstr| wijst naar een string in het geheugen. De identifier \lstinline|str| is de naam van een array.
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\foreach \y [count=\x from 0] in {H,e,l,l,o,\textbackslash 0}{\node[memloc] at (\x,0){\strut\y};}
-\node[memloc] at (-2.5,0) {};
-\node at (-3.5,0) [left] {pstr:};
-\draw[-latex,thick,shorten >= 1pt] (-2.5,0) -- (-0.5,0.0);
-\fill (-2.5,0) circle (2pt);
-\foreach \y [count=\x from 0] in {W,o,r,l,d,\textbackslash0}{\node[memloc] at (\x,-2){\strut\y};}
-\node at (-1.0,-2) [left] {str:};
-\end{tikzpicture}
-\end{figure}
-
-We kunnen \lstinline|pstr| dus wel aanpassen en \lstinline|str| niet:
-
-\begin{lstlisting}
-char *pstr = "Hello";  /* pstr: pointer to first address of array */
-char str[] = "World";  /* str: alias for first address or array */
-
-pstr = str; /* pstr points to first address of str */
-str = pstr; /* ILLEGAL: str cannot be assigned! */
-\end{lstlisting}
-
-Een speciaal geval van een pointer-adres is de zogenoemde NULL-pointer. De inhoud van de pointer is dan~0 (alle bits van de pointer-variabele zijn~0). In principe is er geen verschil met elke andere inhoud van de pointer, maar een NULL-pointer wordt gebruikt om aan te geven dat een pointer nergens naartoe wijst.
-
-\begin{lstlisting}
-/* #define NULL ((void*)0) */
-
-char *p = NULL;
-\end{lstlisting}
-
-Een NULL-pointer wordt als volgt weergegeven:
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[arraypic]
-\node at (-3.5,0) [left] {p:};
-\node[memloc] at (-2.5,0) {};
-\draw[-latex,thick,shorten >= 1pt] (-2.5,0) -- (-0.5,0.0);
-\fill (-2.5,0) circle (2pt);
-\draw (0,0) pic {memlocnull};
-\end{tikzpicture}
-\end{figure}
-
-Een NULL-pointer mag niet gebruikt worden om een variabele te benaderen. Dit wordt een \textsl{NULL-pointer dereference}\footnote{Zie \url{https://en.wikipedia.org/wiki/Null_pointer\#Null_Dereferencing}} genoemd en leidt in veel gevallen tot een crash van het programma.
-
-\begin{lstlisting}
-/* #define NULL ((void*)0) */
-
-char *p = NULL;
-*p = *p + 1;        /* Oops!!! */
-\end{lstlisting}
-
-\section{Command line argumenten en bestandsafhandeling in C}
-\label{sec:argcargv}
-In besturingssystemen die C ondersteunen zoals Windows, Linux en Mac OS X, is het mogelijk om een C-programma \textsl{command line argumenten} mee te geven en bestanden te manipuleren. In deze bijlage doen we dat in een zogenoemde DOS-box onder Windows.
-
-\subsection{Command line argumenten}
-In figuur~\ref{fig:vbarg} is te zien dat het programma \lstinline[language=,literate=]|myprog.exe| gestart wordt met de argumenten \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. Het programma drukt eenvoudigweg alle argumenten op het beeldscherm af. Te zien is dat ook de programmanaam als argument wordt meegegeven.
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{myprog.png}
-	\caption{Voorbeeld van een commando met argumenten.}
-	\label{fig:vbarg}
-\end{figure}
-
-%%%\begin{lstlisting}[caption=Voorbeeld van een commando met argumenten.,label=cod:vbarg]
-%%%myprog.exe argument1 argument2
-%%%\end{lstlisting}
-
-Elk C-programma krijgt per definitie de twee parameters \lstinline|argc| en \lstinline|argv| mee, die aan \lstinline|main()| worden meegegeven. Dit is te zien in listing~\ref{cod:defsarg}.
-
-\begin{figure}[!ht]
-\begin{lstlisting}[caption=Declaratie van de command line parameters.,label=cod:defsarg]
-int main(int argc, char *argv[]) {
-	
-	/* rest of the code */
-	
-	return 0;
-}
-\end{lstlisting}
-\end{figure}
-
-De integer \lstinline|argc| (\textbf{arg}ument \textbf{c}ount) geeft aan hoeveel parameters aan het C-programma zijn meegegeven. De pointer \lstinline|*argv[]| (\textbf{arg}ument \textbf{v}ector) is  een pointer naar een lijst van pointers naar strings. Elke string bevat een argument. Per definitie wijst \lstinline|argv[0]| naar een string waarin de programmanaam vermeld staat. Dat houdt in dat \lstinline|argc| dus minstens 1 is. Er zijn dan geen optionele argumenten meegegeven.
-
-In het voorbeeldprogramma is \lstinline|argc| dus 3 en zijn \lstinline|argv[0]|, \lstinline|argv[1]| en \lstinline|argv[2]| pointers naar respectievelijk \lstinline[language=,literate=]|myprog.exe|, \lstinline[literate=]|argument1| en \lstinline[literate=]|argument2|. In figuur~\ref{fig:argcargv} is een uitbeelding van de variabelen \lstinline|argc| en \lstinline|argv| te zien. De strings worden, zoals gebruikelijk in C, afgesloten met een \lstinline[literate=]|\0|-karakter. De C-standaard schrijft voor dat de lijst van strings wordt afgesloten met een \lstinline|null|-adres.
-
-%%\begin{figure}[!ht]
-%%\centering
-%%\includegraphics[scale=0.55]{argcargv.pdf}
-%%\caption{Uitbeelding van de variabelen argc en argv.}
-%%\label{fig:argcargv}
-%%\end{figure}
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}
-\node (argc) at (0,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {3};
-\node at ([yshift=3mm]argc.north) {argc:};
-\node (argv) at (3,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
-\node at ([yshift=3mm]argv.north) {argv:};
-\draw[fill] (argv.center) circle [radius=1.5pt];
-\node (argv0) at (6,0) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
-\node (argv1) at (6,-0.6) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
-\node (argv2) at (6,-1.2) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {};
-\node (argv3) at (6,-1.8) [draw,thick,minimum width=1.6cm,minimum height=0.6cm] {NULL};
-\draw[-latex] (argv.center) -- (argv0.west);
-\node (argv0s) at (8,0) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {myprog.exe\textbackslash 0};
-\node (argv1s) at (8,-0.6) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {argument1\textbackslash 0};
-\node (argv2s) at (8,-1.2) [draw,thick,minimum width=2.0cm,minimum height=0.6cm,anchor=west] {argument2\textbackslash 0};
-\draw[fill] (argv0.center) circle [radius=1.5pt];
-\draw[fill] (argv1.center) circle [radius=1.5pt];
-\draw[fill] (argv2.center) circle [radius=1.5pt];
-\draw[-latex] (argv0.center) -- (argv0s.west);
-\draw[-latex] (argv1.center) -- (argv1s.west);
-\draw[-latex] (argv2.center) -- (argv2s.west);
-\end{tikzpicture}
-\caption{Uitbeelding van de variabelen argc en argv.}
-\label{fig:argcargv}
-\end{figure}
-
-
-Het programma \lstinline[language=,literate=]|myprog.exe| is te zien in listing~\ref{cod:myprogexe}. Het programma drukt eerst de variabele \lstinline|argc| af. Met behulp van een \lstinline|for|-lus worden de argumenten \'e\'en voor \'e\'en afgedrukt. Merk op dat \lstinline|argv[i]| een pointer is naar het $i^e$ argument. We kunnen \lstinline|argv[i]| dus direct gebruiken voor het afdrukken van de bijbehorende string.
-
-\begin{figure}[H]
-\begin{lstlisting}[caption=Het programma myprog.exe.,label=cod:myprogexe]
-#include <stdio.h>
-#include <stdlib.h>
-	
-	int main(int argc, char *argv[]) {
-	
-	int i;
-	
-	printf("\nAantal argumenten: %d\n\n", argc);
-	for (i = 0; i<argc; i++) {
-		printf("Argument %d: %s\n", i, argv[i]);
-	}
-	return 0;
-}
-\end{lstlisting}
-\end{figure}
-
-\subsection{Bestandsafhandeling in C}
-In C is het mogelijk om met bestanden op de harde schijf (of USB-stick of SD-card) te werken. We spreken dan over File I/O.
-
-In listing~\ref{cod:writefile} is de code te zien om een bestand te schrijven. We zullen er stap voor stap doorheen lopen. In regel~6 wordt de pointer \lstinline|outfile| naar een object \lstinline|FILE| gedeclareerd. Met behulp van de pointer kunnen we onder andere lezen van een bestand en schrijven naar een bestand. In regel~8 wordt het bestand \lstinline|C:\temp\testbestand.txt| geopend voor schrijven. Dat is te zien aan de tweede argument \lstinline|"w"|. Merk op dat in de bestandsnaam gebruik is gemaakt van een dubbele backslash omdat een backslash door C wordt gebruikt voor afdrukbare karakters zoals \lstinline|\n|. De functie \lstinline|fopen| geeft een adres terug die wordt toegekend aan de pointer \lstinline|outfile|. Als om \'e\'en of andere reden het bestand niet geopend kan worden, geeft de functie \lstinline|fopen| een \lstinline|null|-pointer terug. We moeten hier natuurlijk op testen. Dat is te zien in regel~10. We drukken dan een verklarende tekst af (regel~11). Als het bestand voor schrijven geopend kan worden, dan schrijven we een regel naar dat bestand. Dat is te zien regel~13. De functie \lstinline|fprintf| lijkt veel op de bekende \lstinline|printf|-functie maar heeft \'e\'en extra parameter, namelijk de pointer \lstinline|outfile|. In regel~14 wordt het bestand met behulp van de functie \lstinline|fclose| gesloten.
-
-\begin{figure}[!ht]
-\begin{lstlisting}[caption=Voorbeeld schrijven naar een bestand.,label=cod:writefile]
-#include <stdio.h>
-#include <stdlib.h>
-	
-int main() {
-
-	FILE *outfile;
-	
-	outfile = fopen("C:\\temp\\testbestand.txt", "w");
-	
-	if (outfile == NULL) {
-		printf("Bestand kan niet geopend worden.\n");
-	} else {
-		fprintf(outfile, "Een stukje tekst\n");
-		fclose(outfile);
-	}
-	
-	return 0;
-}
-\end{lstlisting}
-\end{figure}
-
-Listing~\ref{cod:readfile} laat de code zien om een bestand te lezen. Er wordt weer gebruik gemaakt van een \lstinline|FILE|-pointer, in dit geval de pointer \lstinline|infile|.  Het genoemde bestand wordt weer geopend met de functie \lstinline|fopen| maar ditmaal met als tweede argument \lstinline|"r"| wat staat voor lezen uit een bestand. Mocht om \'e\'en of andere reden het bestand niet geopend kunnen worden, dan geeft \lstinline|fopen| een \lstinline|null|-pointer terug. Hier testen we op in regel~11.
-
-In de regels 14 t/m 16 worden de karakters \'e\'en voor \'e\'en ingelezen en afgedrukt op het beeldscherm. We zien hier een typische C-\lstinline|while|-constructie.  Er wordt een karakter ingelezen door middel van de functie \lstinline|fgetc| en toegekend aan de variabele \lstinline|ch|. Tegelijkertijd wordt getest of het ingelezen karakter gelijk is aan \lstinline|EOF| wat staat voor end-of-file. Zolang dat niet het geval is wordt het karakter afgedrukt met de functie \lstinline|printf|.
-
-\begin{figure}[!ht]
-\begin{lstlisting}[caption=Voorbeeld lezen uit een bestand.,label=cod:readfile]
-#include <stdio.h>
-#include <stdlib.h>
-	
-int main() {
-
-	FILE *infile;
-	int ch;
-	
-	infile = fopen("C:\\temp\\testbestand.txt", "r");
-	
-	if (infile == NULL) {
-		printf("Kan bestand niet openen.");
-	} else {
-		while ((ch = fgetc(infile)) != EOF) {
-			printf("%c", ch);
-		}
-	}
-	
-	fclose(infile);
-	
-	return 0;
-}
-\end{lstlisting}
-\end{figure}
-
-\subsection{Command line argumenten en bestandsafhandeling}
-Het laatste voorbeeld betreft het kopi\"eren van een bestand. We gebruiken de command line argumenten om de bestandsnamen door te geven en bestandsafhandeling om het daadwerkelijke kopi\"eren te realiseren. Het programma is te vinden in listing~\ref{cod:filecopy} op pagina~\pageref{cod:filecopy} .
-
-We declareren eerst de pointers voor de twee bestanden, dit is te zien in regel~8.  In regel~10 declareren we twee integers, \'e\'en voor de in te lezen karakters en \'e\'en voor het bijhouden hoeveel karakters er zijn gekopieerd. In de regels~14 t/m~17 testen we of het aantal opgegeven argumenten drie is. Zo niet, dan drukken we een helptekst af om de gebruiker te informeren hoe het commando moet worden gebruikt. Tevens wordt het programma afgesloten met een \lstinline|return|-statement.  Deze geeft de waarde $-1$ terug aan het besturingssysteem, een gebruikelijke techniek in Unix-achtige omgevingen om foutmeldingen door te geven.
-
-In de regels~20 t/m~23 wordt getest of de namen van de twee bestanden identiek zijn.  Dat mag natuurlijk niet anders wordt het leesbestand overschreven. We geven een passende foutmelding en verlaten het programma middels een \lstinline|return|-statement met de waarde~$-2$.
-
-In de regels~26 t/m 30 wordt het leesbestand geopend. We hebben dit al eerder besproken. In de regels~33 t/m 38 wordt het schrijfbestand geopend. Ook dit is al eerder besproken. Het daadwerkelijke kopi\"eren gebeurt in de regels~41 t/m 44. Tevens wordt bijgehouden hoeveel karakters er zijn gekopieerd. Dit aantal wordt afgedrukt in regel~46.
-
-We ronden het programma af door het leesbestand en schrijfbestand af te sluiten. Een aantal voorbeelden van het gebruik van het programma is te zien in figuur~\ref{fig:filecopy}.
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{filecopy.png}
-	\caption{Voorbeelden van het kopieerprogramma.}
-	\label{fig:filecopy}
-\end{figure}
-
-\subsection{Openen van een DOS-box op Windows}
-Een DOS-box kan je openen via de Search-box (in het voorbeeld onder Windows 10). Klik op de Search-box en vul in het kader de tekst \lstinline[language=,literate=]|cmd.exe| in. Druk op de enter-toets en een DOS-box wordt geopend. Zie figuur~\ref{fig:cmdexe}.
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.63]{cmdexe.png}
-	\caption{Openen van een DOS-box.}
-	\label{fig:cmdexe}
-\end{figure}
-
-Vervolgens kun je navigeren naar de \textsl{executable} (uitvoerbaar programma) middels het commando \lstinline|cd| (change directory). In het voorbeeld van figuur~\ref{fig:filecopy} doe je als volgt:
-
-\lstinline|cd \Users\JouwNaam\Documents\CodeBlocks\filecopy\bin\Debug|
-
-Vul voor \lstinline|JouwNaam| je gebruikersnaam in waarmee je inlogt. We gaan er hier trouwens vanuit dat je de programma's in de map \lstinline|CodeBlocks| zet die in de map \lstinline|Documents| staat.
-
-Als je je programma's op een andere schijf geplaatst hebt, moet je eerst van schijf veranderen.  Stel dat je je programma's op de \lstinline|D:|-schijf hebt geplaatst, dan verander je van schijf met het commando:
-
-\lstinline|D:|
-
-Daarna kan je naar je map navigeren, bijvoorbeeld:
-
-\lstinline|cd \PROJECTS\CodeBlocks\filecopy\bin\Debug|
-
-\begin{figure}[!p]
-\begin{lstlisting}[numbers=left,caption=Programma om een bestand te kopi\"eren.,label=cod:filecopy]
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-	
-int main(int argc, char *argv[]) {
-	
-	/* The input and output file handlers */
-	FILE *infile, *outfile;
-	
-	/* Character to read and character count */
-	int ch, count = 0;
-	
-	/* We need exactly 3 arguments */
-	if (argc != 3) {
-		printf("Usage: %s infile outfile\n", argv[0]);
-		return -1;
-	}
-	
-	/* Test if input file and output file have the same name */
-	if (strcmp(argv[1], argv[2]) == 0) {
-		printf("Filenames cannot be the same\n");
-		return -2;
-	}
-	
-	/* Open the input file, exit if error */
-	infile = fopen(argv[1], "r");
-	if (infile == NULL) {
-		printf("Cannot open input file %s\n", argv[1]);
-		return -3;
-	}
-	
-	/* Open the output file, exit if error */
-	outfile = fopen(argv[2], "w");
-	if (outfile == NULL) {
-		printf("Cannot open output file %s\n", argv[2]);
-		fclose(infile);
-		return -4;
-	}
-	
-	/* Copy characters from input file to output file */
-	while ((ch = fgetc(infile)) != EOF) {
-		count++;
-		fprintf(outfile, "%c", ch);
-	}
-	
-	printf("Copied %d characters\n", count);
-	
-	fclose(infile);
-	fclose(outfile);
-	
-	return 0;
-}
-\end{lstlisting}
-\end{figure}
 
 \iffalse
 \section{Moeilijkheidsgraad}
