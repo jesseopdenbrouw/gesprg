@@ -14,7 +14,7 @@
 
 \documentclass[a4paper,10pt,fleqn,twoside]{article}
 
-\def\version{1.9999$\delta$}
+\def\version{1.9999$\varepsilon$}
 
 \usepackage{siunitx}
 \sisetup{output-decimal-marker = {,}}
@@ -724,7 +724,6 @@ int main(void) {
         printf("%f tot de macht %f is: %f\n", x, y, macht);
         x = x + 1;
     }
-    fflush(stdin);
     getchar();
     return 0;
 }
@@ -785,7 +784,7 @@ Schrijf een programma dat de uitkomst bepaalt van de onderstaande rij:
 
 De uitkomst is dus de som van de inversen van de kwadraten van 1 tot en met $n$. Aan de gebruiker moet $n$ worden gevraagd. Zorg ervoor dat het ingevoerde getal groter is dan 0 met behulp van een \lstinline|do while|-lus. Gebruik een \lstinline|for|-lus om de som te berekenen.
 
-Het is te bewijzen dat als $n\longrightarrow\infty$, de uitkomst $\pi^2/6 \approx 1,644934$ bedraagt. Zie \url{https://nl.wikipedia.org/wiki/Bazel-probleem}.
+Het is te bewijzen dat als $n\longrightarrow\infty$, de uitkomst $\pi^2/6 \approx $1,644934 bedraagt. Zie \url{https://nl.wikipedia.org/wiki/Bazel-probleem}.
 
 \subsection{De spaarrekening}
 Wanneer je een geldbedrag op een spaarrekening hebt staan en je neemt de daarover uitgekeerde rente niet op, dan groeit het geldbedrag elk jaar met die rente. 
@@ -1098,8 +1097,8 @@ Hierin is $I_s$ de donkerstroom (typisch \SI{1e-9}{\milli\ampere}) en $U_T$ de t
 \begin{tikzpicture}[background rectangle/.style={fill=yellow!30}, show background rectangle]
 	%\sansmath
 	\begin{axis}[width=8cm,height=5cm,
-		xlabel=$U_D$,
-		ylabel=$I_D$,
+		xlabel={$U_{diode}$ [V]},
+		ylabel={$I_{diode}$ [mA]},
 		axis x line*=bottom,
 		axis y line*=left,
         xmin=0, xmax=1.05,
@@ -1218,7 +1217,6 @@ int main(void){
             letter = 'F'; break;
     }
     printf("Dit komt overeen met een %c.\n", letter);
-    fflush(stdin);
     getchar();
     return 0;
 }
@@ -1384,7 +1382,6 @@ int main(void) {
     printf("fib(%d) is %d\n", getal, fib(getal));
 
     printf("Druk op enter om het programma af te sluiten.");
-    fflush(stdin);
     getchar();
     return 0;
 }
@@ -2419,7 +2416,7 @@ Een \textsl{isolated prime} is een priemgetal dat geflankeerd wordt door twee ni
 
 Schrijf een programma dat een geheel getal vraagt (getal $>$ 1, want 0 en 1 zijn geen priemgetallen) en afdrukt of het opgegeven getal een isolated prime is. In het programma moet een functie \lstinline|int isprime(int n)| komen die bepaalt of getal $n$ een priemgetal is. Daarnaast moet er een functie \lstinline|int isisolatedprime(int n)| die bepaalt of $n$ een isolated prime is.
 
-\subsection{ De Ackermann-functie}
+\subsection{De Ackermann-functie}
 In de jaren `20 van de vorige eeuw is een functie bedacht door Wilhelm Ackermann. Het is een recursieve functie van twee variabelen $m$ en $n$ (beide $\geq 0$). De functie is gedefinieerd als:
 
 \begin{equation*}
@@ -2484,7 +2481,6 @@ int main(void) {
     printf("De gemiddelde temperatuur is %.2f\n\n", temp_acc / AANTAL);
 
     printf("Druk op enter om het programma af te sluiten.");
-    fflush(stdin);
     getchar();
     return 0;
 }
